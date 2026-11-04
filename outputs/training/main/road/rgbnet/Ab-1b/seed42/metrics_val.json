@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.627,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4526,
+  "fp": 113,
+  "tn": 80843,
+  "fn": 124,
+  "mcc": 0.9730230574098638,
+  "f1": 0.9744859511249867,
+  "precision": 0.9756413020047424,
+  "recall": 0.9733333333333334,
+  "fpr": 0.0013958199515786353,
+  "specificity": 0.9986041800484213,
+  "balanced_accuracy": 0.9859687566908774,
+  "accuracy": 0.9972315024647805,
+  "auc_pr": 0.9969849082127399,
+  "auc_pr_norm": 0.9968117255355973,
+  "auc_roc": 0.9998025796038417,
+  "recall_at_fpr_0p1": 0.9655913978494624,
+  "recall_at_fpr_1": 0.9961290322580645,
+  "tau_at_fpr_1": 0.004164001438766718,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9695303416372582,
+      "hi": 0.9762738066108446,
+      "mean": 0.9730502528162462,
+      "std": 0.0017440240332030326,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9963445558116923,
+      "hi": 0.9975677792127298,
+      "mean": 0.9969843274994666,
+      "std": 0.00031318514191402367,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9711827956989247,
+      "hi": 0.9775633110821155,
+      "mean": 0.974510328852748,
+      "std": 0.0016497922408340547,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9688172043010753,
+      "hi": 0.9780645161290322,
+      "mean": 0.973407311827957,
+      "std": 0.0023947727758241097,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0011487721725381688,
+      "hi": 0.0016675725085231485,
+      "mean": 0.0013974010573644944,
+      "std": 0.0001327678661152327,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.8503225806451613,
+    "macro_f1": 0.6461046558697029,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.6163265306122448,
+        "recall": 0.34085778781038373,
+        "f1": 0.438953488372093
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.8691260430390865,
+        "recall": 0.8970988213961922,
+        "f1": 0.8828909212580861
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.3333333333333333,
+        "recall": 0.08333333333333333,
+        "f1": 0.13333333333333333
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.9146436961628818,
+        "recall": 0.9974380871050385,
+        "f1": 0.954248366013072
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.9934640522875817,
+        "recall": 0.9296636085626911,
+        "f1": 0.9605055292259085
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.9765886287625418,
+        "recall": 0.6759259259259259,
+        "f1": 0.7989056087551301
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.627
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-1b"
+  },
+  "tau_at_fpr_0p1": 0.8446717262268066,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.8446717262268066,
+    "fpr_1": 0.004164001438766718,
+    "source": "calibrated_on_val"
+  }
+}

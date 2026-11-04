@@ -1,0 +1,92 @@
+{
+  "split": "val",
+  "n_windows_indexed": 22315,
+  "threshold": 0.74,
+  "n": 22315,
+  "n_pos": 12651,
+  "n_neg": 9664,
+  "prevalence": 0.5669280752856822,
+  "tp": 12636,
+  "fp": 0,
+  "tn": 9664,
+  "fn": 15,
+  "mcc": 0.9986322714608226,
+  "f1": 0.9994068098232293,
+  "precision": 1.0,
+  "recall": 0.9988143229784207,
+  "fpr": 0.0,
+  "specificity": 1.0,
+  "balanced_accuracy": 0.9994071614892104,
+  "accuracy": 0.9993278064082456,
+  "auc_pr": 0.9998883716166649,
+  "auc_pr_norm": 0.9997422405448962,
+  "auc_roc": 0.9998124804677377,
+  "recall_at_fpr_0p1": 0.9989724132479646,
+  "recall_at_fpr_1": 0.9991305035175085,
+  "tau_at_fpr_1": 0.01840651035308838,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9979037841413522,
+      "hi": 0.9992702497858955,
+      "mean": 0.9986277947364388,
+      "std": 0.0003520178274822202,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9997992020284326,
+      "hi": 0.9999601916465912,
+      "mean": 0.9998893871389387,
+      "std": 4.169464150515273e-05,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9990901538826694,
+      "hi": 0.9996837194591603,
+      "mean": 0.9994048080014203,
+      "std": 0.0001529143593283491,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.998181961900245,
+      "hi": 0.9993676389218243,
+      "mean": 0.9988103707216819,
+      "std": 0.0003054502067370761,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0,
+      "hi": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 22315,
+  "multiclass": {},
+  "zero_shot_types": [
+    "Flooding",
+    "Fuzzing",
+    "Malfunction"
+  ],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.74
+  },
+  "data": {
+    "dataset": "hcrl_canfd",
+    "split": "val",
+    "n_captures": 3,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  },
+  "tau_at_fpr_0p1": 0.21981677412986755,
+  "fpr_at_fpr_0p1": 0.0009312913907284768,
+  "fpr_at_fpr_1": 0.009933774834437087,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.21981677412986755,
+    "fpr_1": 0.01840651035308838,
+    "source": "calibrated_on_val"
+  }
+}

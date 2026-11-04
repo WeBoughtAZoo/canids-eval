@@ -1,0 +1,27 @@
+# 语料与派生张量（许可禁止再分发）
+训练数据集*/
+数据集/
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.parquet
+
+# 远程连接与密钥
+*.pem
+*.key
+*id_rsa*
+代码/remote/config.env
+代码/remote/*.env
+
+# 运行残留
+outputs/_deprecated/
+outputs/synth_run/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/

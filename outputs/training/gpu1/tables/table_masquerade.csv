@@ -1,0 +1,4 @@
+﻿dataset,model,n_masq,recall_masq,mean_score_masq,n_other,recall_other,types
+ctt15,fdtcn,95565,0.09976455815413593,0.1139695457472517,141388,0.7295173564941863,"masquerade_timed, masquerade_untimed"
+ctt15,lstm,95565,0.4470151205985455,0.43731799211140765,141388,0.9466362067502192,"masquerade_timed, masquerade_untimed"
+road,fdtcn,2196,0.9877049180327869,0.995175904508707,2343,0.9910371318822023,masquerade

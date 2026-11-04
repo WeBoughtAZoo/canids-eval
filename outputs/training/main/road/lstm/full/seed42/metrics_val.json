@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.629,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4035,
+  "fp": 1003,
+  "tn": 79953,
+  "fn": 615,
+  "mcc": 0.8237316402071518,
+  "f1": 0.8329892650701899,
+  "precision": 0.8009130607383882,
+  "recall": 0.867741935483871,
+  "fpr": 0.01238944611887939,
+  "specificity": 0.9876105538811206,
+  "balanced_accuracy": 0.9276762446824958,
+  "accuracy": 0.9810994556456323,
+  "auc_pr": 0.8933560775002651,
+  "auc_pr_norm": 0.8872305989733645,
+  "auc_roc": 0.9938897911888417,
+  "recall_at_fpr_0p1": 0.3296774193548387,
+  "recall_at_fpr_1": 0.8249462365591398,
+  "tau_at_fpr_1": 0.9612343907356262,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.8152352365427225,
+      "hi": 0.8320176740338291,
+      "mean": 0.8235849040482591,
+      "std": 0.004131160209377035,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.8855199842780502,
+      "hi": 0.9011882570455815,
+      "mean": 0.8933027431712859,
+      "std": 0.003990289196314528,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.8249523572658765,
+      "hi": 0.840957460991992,
+      "mean": 0.8328390840859127,
+      "std": 0.0039051373361820873,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.8580645161290322,
+      "hi": 0.8776344086021506,
+      "mean": 0.8677903225806451,
+      "std": 0.005024293868772744,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.011635950392805969,
+      "hi": 0.013180307821532684,
+      "mean": 0.012415200849844361,
+      "std": 0.0003874445676793326,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.4632258064516129,
+    "macro_f1": 0.27577976857141284,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.8016759776536313,
+        "recall": 0.6478555304740407,
+        "f1": 0.7166042446941324
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 0.01694915254237288,
+        "f1": 0.03333333333333333
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.5254820936639119,
+        "recall": 0.6917497733454215,
+        "f1": 0.5972602739726027
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.6047297297297297,
+        "recall": 0.15286080273270708,
+        "f1": 0.2440354464894342
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.5298013245033113,
+        "recall": 0.24464831804281345,
+        "f1": 0.3347280334728034
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.5547945205479452,
+        "recall": 0.1875,
+        "f1": 0.28027681660899656
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.629
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 0.9999428987503052,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999428987503052,
+    "fpr_1": 0.9612343907356262,
+    "source": "calibrated_on_val"
+  }
+}

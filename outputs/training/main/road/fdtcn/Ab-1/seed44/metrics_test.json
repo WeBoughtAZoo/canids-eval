@@ -1,0 +1,158 @@
+{
+  "split": "test",
+  "n_windows_indexed": 85640,
+  "threshold": 0.998,
+  "n": 85640,
+  "n_pos": 4539,
+  "n_neg": 81101,
+  "prevalence": 0.05300093414292387,
+  "tp": 4494,
+  "fp": 337,
+  "tn": 80764,
+  "fn": 45,
+  "mcc": 0.9573950132756235,
+  "f1": 0.9592315901814302,
+  "precision": 0.93024218588284,
+  "recall": 0.9900859220092532,
+  "fpr": 0.0041553125115596605,
+  "specificity": 0.9958446874884403,
+  "balanced_accuracy": 0.9929653047488467,
+  "accuracy": 0.9955394675385334,
+  "auc_pr": 0.967699253537567,
+  "auc_pr_norm": 0.9658914695621169,
+  "auc_roc": 0.9990260119135514,
+  "recall_at_fpr_0p1": 0.9843577880590438,
+  "recall_at_fpr_1": 0.9988984357788059,
+  "tau_at_fpr_1": 0.02387341856956482,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9533876677751717,
+      "hi": 0.9614296785699472,
+      "mean": 0.9573860984333799,
+      "std": 0.0020840668283788892,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9627778798882246,
+      "hi": 0.9726692754652442,
+      "mean": 0.9677500178054409,
+      "std": 0.002569556491564433,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9553999805732455,
+      "hi": 0.9631466726116427,
+      "mean": 0.9592226001310297,
+      "std": 0.0020130667836879184,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9870015421899097,
+      "hi": 0.992729676140119,
+      "mean": 0.9900354703679225,
+      "std": 0.0014468984730133746,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0037111133031651894,
+      "hi": 0.004611533766538021,
+      "mean": 0.004153709572015141,
+      "std": 0.00022542728203457548,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85640,
+  "multiclass": {
+    "n": 4539,
+    "accuracy": 0.9845781009032827,
+    "macro_f1": 0.80797946198426,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 485,
+        "precision": 0.9979381443298969,
+        "recall": 0.9979381443298969,
+        "f1": 0.9979381443298969
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 70,
+        "precision": 1.0,
+        "recall": 0.9857142857142858,
+        "f1": 0.9928057553956835
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2196,
+        "precision": 0.9864253393665159,
+        "recall": 0.9927140255009107,
+        "f1": 0.9895596913300045
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 15,
+        "precision": 0.75,
+        "recall": 0.4,
+        "f1": 0.5217391304347827
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 658,
+        "precision": 0.9908952959028832,
+        "recall": 0.9924012158054711,
+        "f1": 0.9916476841305998
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 390,
+        "precision": 1.0,
+        "recall": 0.9897435897435898,
+        "f1": 0.9948453608247423
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 725,
+        "precision": 0.9985549132947977,
+        "recall": 0.953103448275862,
+        "f1": 0.9752999294283697
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.998
+  },
+  "data": {
+    "dataset": "road",
+    "split": "test",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-1"
+  },
+  "tau_at_fpr_0p1": 0.9999682903289795,
+  "fpr_at_fpr_0p1": 0.003119566959716896,
+  "fpr_at_fpr_1": 0.008976461449303955,
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999682903289795,
+    "fpr_1": 0.02387341856956482,
+    "source": "inherited_from_val"
+  }
+}

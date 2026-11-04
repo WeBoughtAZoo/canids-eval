@@ -1,0 +1,4 @@
+﻿dataset,model,n_params,checkpoint_mb,int8_estimate_mb,macs,receptive_field,mcc,n_seeds
+ctt15,fdtcn,66369,0.8134,0.0664,2935872,61,0.6564096333771636,1
+ctt15,lstm,11729,0.1573,0.0117,398400,,0.8491084979419405,1
+road,fdtcn,65914,0.8095,0.0659,2935424,61,0.9568223722132155,1

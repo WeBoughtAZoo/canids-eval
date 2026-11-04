@@ -1,0 +1,24 @@
+﻿variant,batch,n_runs,seeds,status,purpose
+full,gpu1,3,42|43|44,run,满通道参照
+full,main,5,42|43|44|45|46,run,满通道参照
+Ab-1,main,3,42|43|44,run,去 dlc 派生的显式长度通道（填充比例 + 载荷长度）
+Ab-1b,main,3,42|43|44,run,去字节图 4 个填充掩码通道
+Ab-2,main,3,42|43|44,run,去时序通道（验证 masquerade 的必要性）
+Ab-6,main,3,42|43|44,run,Focal Loss 替代加权 BCE
+Ab-12,gpu1,3,42|43|44,run,协议盲 5 维子集（= FD-TCN-PF）
+Ab-12,main,3,42|43|44,run,协议盲 5 维子集（= FD-TCN-PF）
+Ab-12b,gpu1,3,42|43|44,run,10 维阶梯：只删 6 个 DLC 代理通道（容量/通道混淆的对照）
+Ab-13-RF17,gpu1,3,42|43|44,run,感受野扫描 RF=17（恒 4 块）
+Ab-13-RF17,main,1,42,partial,感受野扫描 RF=17（恒 4 块）
+Ab-13-RF33,gpu1,3,42|43|44,run,感受野扫描 RF=33
+Ab-13-RF33,main,1,42,partial,感受野扫描 RF=33
+Ab-13-RF45,gpu1,3,42|43|44,run,感受野扫描 RF=45
+Ab-13-RF45,main,1,42,partial,感受野扫描 RF=45
+Ab-13-RF93,gpu1,3,42|43|44,run,感受野扫描 RF=93
+Ab-13-RF93,main,1,42,partial,感受野扫描 RF=93
+Ab-14,main,5,42|43|44|1234|2024,run,双头 → 单头
+Ab-19-maxpool,gpu1,3,42|43|44,run,last+mean+max 池化
+Ab-20-auxframe,gpu1,3,42|43|44,run,逐帧辅助 BCE
+Ab-16-fdtcn-small,gpu1,3,42|43|44,run,容量匹配对照（≈20K）
+Ab-17-lstm-large,gpu1,3,42|43|44,run,容量匹配对照（hidden 64）
+Ab-18-rgbnet8b,—,0,,not_run,RGBNet 只喂前 8 字节（CANDIDS 公平性）

@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.515,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4555,
+  "fp": 67,
+  "tn": 80889,
+  "fn": 95,
+  "mcc": 0.9815326832561683,
+  "f1": 0.9825280414150129,
+  "precision": 0.9855041107745565,
+  "recall": 0.9795698924731183,
+  "fpr": 0.0008276100597855626,
+  "specificity": 0.9991723899402144,
+  "balanced_accuracy": 0.9893711412066664,
+  "accuracy": 0.9981076092797234,
+  "auc_pr": 0.997731956124816,
+  "auc_pr_norm": 0.9976016828403207,
+  "auc_roc": 0.9998362843589004,
+  "recall_at_fpr_0p1": 0.9808602150537634,
+  "recall_at_fpr_1": 0.9974193548387097,
+  "tau_at_fpr_1": 0.0002994452661368996,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9786547163659549,
+      "hi": 0.9842599979646676,
+      "mean": 0.9815179885664258,
+      "std": 0.0014190626624647907,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9967463688517791,
+      "hi": 0.9984996522237582,
+      "mean": 0.9977353407628964,
+      "std": 0.0004520368764508997,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9797979559263159,
+      "hi": 0.9851038679846403,
+      "mean": 0.982513213242953,
+      "std": 0.0013433024613770045,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9754838709677419,
+      "hi": 0.983225806451613,
+      "mean": 0.9795593548387096,
+      "std": 0.0020367793967404043,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0006420154157814123,
+      "hi": 0.0010252482830179356,
+      "mean": 0.0008286723652354365,
+      "std": 9.82631461062688e-05,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.8793548387096775,
+    "macro_f1": 0.7194784160614387,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.5857988165680473,
+        "recall": 0.4469525959367946,
+        "f1": 0.5070422535211266
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.8879003558718861,
+        "recall": 0.9048050770625566,
+        "f1": 0.8962730130220027
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.625,
+        "recall": 0.4166666666666667,
+        "f1": 0.5
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.9683860232945092,
+        "recall": 0.9940222032450897,
+        "f1": 0.9810366624525917
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.9936708860759493,
+        "recall": 0.9602446483180428,
+        "f1": 0.9766718506998445
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.988795518207283,
+        "recall": 0.8171296296296297,
+        "f1": 0.8948035487959441
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.515
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-1b"
+  },
+  "tau_at_fpr_0p1": 0.3093719780445099,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.3093719780445099,
+    "fpr_1": 0.0002994452661368996,
+    "source": "calibrated_on_val"
+  }
+}

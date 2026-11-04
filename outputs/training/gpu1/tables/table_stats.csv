@@ -1,0 +1,4 @@
+﻿dataset,regime,comparison,run_a,run_b,seed,n,b,c,statistic,method,p_value,alpha,n_clusters,n_discordant_window,p_value_window,p_resolution,p_min,p_at_floor,p_holm,significant
+ctt15,full,FD-TCN vs LSTM,ctt15/fdtcn/full/seed42,ctt15/lstm/full/seed42,42,2930997,69926,2343,67583.0,cluster_monte_carlo_signflip,4.999750012499375e-05,0.05,224,72269,0.0,4.999750012499375e-05,4.999750012499375e-05,True,0.00014999250037498125,True
+ctt15,full,Ab-12b vs full,ctt15/fdtcn/full/seed42,ctt15/fdtcn/Ab-12b/seed42,42,2930997,56428,10213,46215.0,cluster_monte_carlo_signflip,4.999750012499375e-05,0.05,224,66641,0.0,4.999750012499375e-05,4.999750012499375e-05,True,0.00014999250037498125,True
+ctt15,full,Ab-12 vs full,ctt15/lstm/full/seed42,ctt15/lstm/Ab-12/seed42,42,2930997,10142,13611,3469.0,cluster_monte_carlo_signflip,0.19174041297935104,0.05,224,23753,3.9734963151448826e-112,4.999750012499375e-05,4.999750012499375e-05,False,0.19174041297935104,False

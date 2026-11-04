@@ -1,0 +1,14 @@
+# 运行环境（CPU-only；本项目不使用 GPU / NPU）
+# 版本为本项目最后一次全量运行的实测值（2026-10-30），Windows 11 + Python 3.13。
+# torch 请按平台选择 CPU 轮子：
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+pyarrow==26.0.0
+
+# 可选：仅预处理阶段用于大表读取（当前代码路径不强制）
+# pandas>=2.2

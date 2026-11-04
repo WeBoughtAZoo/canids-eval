@@ -1,0 +1,126 @@
+{
+  "split": "val",
+  "n_windows_indexed": 22315,
+  "threshold": 0.051000000000000004,
+  "n": 22315,
+  "n_pos": 12651,
+  "n_neg": 9664,
+  "prevalence": 0.5669280752856822,
+  "tp": 12643,
+  "fp": 2,
+  "tn": 9662,
+  "fn": 8,
+  "mcc": 0.9990876068605324,
+  "f1": 0.9996046805819102,
+  "precision": 0.9998418347172796,
+  "recall": 0.9993676389218243,
+  "fpr": 0.00020695364238410596,
+  "specificity": 0.9997930463576159,
+  "balanced_accuracy": 0.9995803426397201,
+  "accuracy": 0.9995518709388304,
+  "auc_pr": 0.9999348141428634,
+  "auc_pr_norm": 0.9998494802978061,
+  "auc_roc": 0.9998902496255826,
+  "recall_at_fpr_0p1": 0.9994466840565963,
+  "recall_at_fpr_1": 0.9994466840565963,
+  "tau_at_fpr_1": 0.0019563380628824234,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9985402331096528,
+      "hi": 0.999634981656731,
+      "mean": 0.9990991551876148,
+      "std": 0.00028188902725779586,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9998647622368311,
+      "hi": 0.9999892685525317,
+      "mean": 0.9999355072080086,
+      "std": 3.2235266733112606e-05,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9993673388691182,
+      "hi": 0.9998418847339712,
+      "mean": 0.9996096523757534,
+      "std": 0.00012221071944676484,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9988933681131926,
+      "hi": 0.9997628645956841,
+      "mean": 0.9993728559007194,
+      "std": 0.0002238759402363727,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0,
+      "hi": 0.0005173841059602649,
+      "mean": 0.00020074503311258283,
+      "std": 0.0001483171383684848,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 22315,
+  "multiclass": {
+    "n": 12651,
+    "accuracy": 0.9992095486522804,
+    "macro_f1": 0.7494450465946167,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "Flooding",
+        "n": 6759,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "class_index": 2,
+        "class_name": "Fuzzing",
+        "n": 3730,
+        "precision": 1.0,
+        "recall": 0.9997319034852546,
+        "f1": 0.999865933771283
+      },
+      {
+        "class_index": 3,
+        "class_name": "Malfunction",
+        "n": 2162,
+        "precision": 1.0,
+        "recall": 0.9958371877890841,
+        "f1": 0.9979142526071842
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.051000000000000004
+  },
+  "data": {
+    "dataset": "hcrl_canfd",
+    "split": "val",
+    "n_captures": 3,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 0.006867467891424894,
+  "fpr_at_fpr_0p1": 0.0009312913907284768,
+  "fpr_at_fpr_1": 0.009933774834437087,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.006867467891424894,
+    "fpr_1": 0.0019563380628824234,
+    "source": "calibrated_on_val"
+  }
+}

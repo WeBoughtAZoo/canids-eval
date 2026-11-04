@@ -1,0 +1,101 @@
+{
+  "split": "test",
+  "n_windows_indexed": 2930997,
+  "threshold": 0.094,
+  "n": 2930997,
+  "n_pos": 236953,
+  "n_neg": 2694044,
+  "prevalence": 0.08084382208511302,
+  "tp": 128361,
+  "fp": 9083,
+  "tn": 2684961,
+  "fn": 108592,
+  "mcc": 0.6941472078109545,
+  "recall_at_fpr_0p1": 0.5486657691609729,
+  "recall_at_fpr_1": 0.609200980785219,
+  "tau_at_fpr_0p1": 0.07057976722717285,
+  "tau_at_fpr_1": 0.00781076168641448,
+  "fpr_at_fpr_0p1": 0.003797636564213502,
+  "fpr_at_fpr_1": 0.015781108252129514,
+  "auc_pr": 0.6787587180324747,
+  "auc_pr_norm": 0.6505041366351215,
+  "auc_roc": 0.7865300657765604,
+  "f1": 0.6856945969118342,
+  "precision": 0.9339149035243445,
+  "recall": 0.54171502365448,
+  "fpr": 0.0033715113784333144,
+  "specificity": 0.9966284886215667,
+  "balanced_accuracy": 0.7691717561380234,
+  "accuracy": 0.9598515453956452,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.6854554090330022,
+      "hi": 0.6972945107066779,
+      "mean": 0.6916391553409911,
+      "std": 0.0029907528989101197,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.668982449791797,
+      "hi": 0.6827929260612107,
+      "mean": 0.6762006415995439,
+      "std": 0.0034499612973780116,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.6760570280565121,
+      "hi": 0.6894090078768212,
+      "mean": 0.6829400655719071,
+      "std": 0.003289354893344164,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.5308306017688169,
+      "hi": 0.546292287711052,
+      "mean": 0.5386323211082936,
+      "std": 0.003843977733272429,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0031496319989555623,
+      "hi": 0.0037044894495487702,
+      "mean": 0.0034077495090599516,
+      "std": 0.00013787751791596053,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 200000,
+  "multiclass": {},
+  "zero_shot_types": [
+    "DoS",
+    "Fuzzing",
+    "RpmSpoofing",
+    "double",
+    "force-neutral",
+    "interval",
+    "masquerade",
+    "speed",
+    "speed-accessory",
+    "standstill",
+    "systematic",
+    "triple"
+  ],
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.07057976722717285,
+    "fpr_1": 0.00781076168641448,
+    "source": "inherited_from_val"
+  },
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.094
+  },
+  "data": {
+    "dataset": "ctt15",
+    "split": "test",
+    "n_captures": 224,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  }
+}

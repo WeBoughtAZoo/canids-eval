@@ -1,0 +1,225 @@
+{
+  "split": "test",
+  "n_windows_indexed": 2930997,
+  "threshold": 0.151,
+  "n": 2930997,
+  "n_pos": 236953,
+  "n_neg": 2694044,
+  "prevalence": 0.08084382208511302,
+  "tp": 176715,
+  "fp": 10667,
+  "tn": 2683377,
+  "fn": 60238,
+  "mcc": 0.8266225482864004,
+  "f1": 0.8329032486125348,
+  "precision": 0.9430735075941126,
+  "recall": 0.7457808088523884,
+  "fpr": 0.003959475049405281,
+  "specificity": 0.9960405249505947,
+  "balanced_accuracy": 0.8709106669014915,
+  "accuracy": 0.9758085729872804,
+  "auc_pr": 0.7994593860595328,
+  "auc_pr_norm": 0.7818209584410397,
+  "auc_roc": 0.8293083498674674,
+  "recall_at_fpr_0p1": 0.7503133532810304,
+  "recall_at_fpr_1": 0.7791545158744562,
+  "tau_at_fpr_1": 0.023344647139310837,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.8222083080863584,
+      "hi": 0.8311778565922469,
+      "mean": 0.8267608617944098,
+      "std": 0.0023441227325145613,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.79220625588761,
+      "hi": 0.8036696459504284,
+      "mean": 0.7981891773714813,
+      "std": 0.002959394378907368,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.8283501313495224,
+      "hi": 0.8373378232198474,
+      "mean": 0.8328927332854233,
+      "std": 0.002347412368735018,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.7383248809450182,
+      "hi": 0.751376090048859,
+      "mean": 0.7450160801533801,
+      "std": 0.0034061281443527134,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.003590118097600514,
+      "hi": 0.0041672786417959965,
+      "mean": 0.003866616620700535,
+      "std": 0.00015028198406946295,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 200000,
+  "multiclass": {
+    "n": 236953,
+    "accuracy": 0.28649141390908744,
+    "macro_f1": 0.2015769777895342,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "DoS",
+        "n": 21032,
+        "precision": 0.7743813015582035,
+        "recall": 0.8033948269303918,
+        "f1": 0.7886213012228134
+      },
+      {
+        "class_index": 2,
+        "class_name": "Fuzzing",
+        "n": 19419,
+        "precision": 0.912909418814358,
+        "recall": 0.8080745661465575,
+        "f1": 0.8572989510489512
+      },
+      {
+        "class_index": 3,
+        "class_name": "RpmSpoofing",
+        "n": 4360,
+        "precision": 0.04076663262901579,
+        "recall": 0.35711009174311925,
+        "f1": 0.07317932930698187
+      },
+      {
+        "class_index": 4,
+        "class_name": "double",
+        "n": 5271,
+        "precision": 0.14024975984630164,
+        "recall": 0.19389110225763612,
+        "f1": 0.16276477146042362
+      },
+      {
+        "class_index": 5,
+        "class_name": "force-neutral",
+        "n": 3430,
+        "precision": 0.010657193605683837,
+        "recall": 0.001749271137026239,
+        "f1": 0.003005259203606311
+      },
+      {
+        "class_index": 6,
+        "class_name": "interval",
+        "n": 59233,
+        "precision": 0.9157745175786413,
+        "recall": 0.46789796228453734,
+        "f1": 0.6193503692861213
+      },
+      {
+        "class_index": 7,
+        "class_name": "speed",
+        "n": 4675,
+        "precision": 0.30445544554455445,
+        "recall": 0.026310160427807486,
+        "f1": 0.04843473124630833
+      },
+      {
+        "class_index": 8,
+        "class_name": "speed-accessory",
+        "n": 1716,
+        "precision": 0.005412719891745603,
+        "recall": 0.002331002331002331,
+        "f1": 0.003258655804480652
+      },
+      {
+        "class_index": 9,
+        "class_name": "standstill",
+        "n": 3596,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 10,
+        "class_name": "systematic",
+        "n": 7728,
+        "precision": 0.43047619047619046,
+        "recall": 0.40942028985507245,
+        "f1": 0.4196843082636954
+      },
+      {
+        "class_index": 11,
+        "class_name": "targeted_payload_fuzzing",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 12,
+        "class_name": "triple",
+        "n": 10928,
+        "precision": 0.6240849194729137,
+        "recall": 0.15602122986822842,
+        "f1": 0.24963396778916547
+      },
+      {
+        "class_index": 13,
+        "class_name": "untargeted_payload_fuzzing",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 14,
+        "class_name": "valid_systematic",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 15,
+        "class_name": "unknown_attack",
+        "n": 95565,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ]
+  },
+  "zero_shot_types": [
+    "masquerade",
+    "suppress"
+  ],
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.151
+  },
+  "data": {
+    "dataset": "ctt15",
+    "split": "test",
+    "n_captures": 224,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-12"
+  },
+  "tau_at_fpr_0p1": 0.12274661660194397,
+  "fpr_at_fpr_0p1": 0.0049201126633418015,
+  "fpr_at_fpr_1": 0.03344006259734436,
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.12274661660194397,
+    "fpr_1": 0.023344647139310837,
+    "source": "inherited_from_val"
+  }
+}

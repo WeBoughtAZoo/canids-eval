@@ -1,0 +1,286 @@
+{
+  "dataset": "road",
+  "model": "fdtcn",
+  "variant": "Ab-14",
+  "seed": 43,
+  "run_dir": "D:\\Files\\Personal\\AI works\\WorkBuddy\\CAN IDS\\outputs\\training\\main\\road\\fdtcn\\Ab-14\\seed43",
+  "config_fingerprint": "167371d1551c8cbb",
+  "preprocess_fingerprint": "47a23a91ba9a27d9",
+  "training": {
+    "epochs_run": 19,
+    "best_epoch": 9,
+    "best_score": 0.9154981701643334,
+    "best_threshold": 0.966,
+    "best_metrics": {
+      "train_loss": 0.14018751238252342,
+      "train_loss_bin": 0.14018751238252342,
+      "train_loss_type": 0.0,
+      "train_seconds": 170.75931980006862,
+      "lr": 0.0009460482294732421,
+      "epoch": 9,
+      "val_loss": 0.1291529917341125,
+      "val_auc_pr": 0.9749827968644016,
+      "val_auc_roc": 0.9985839380691064,
+      "val_prevalence": 0.05431862252645842,
+      "val_mcc@0.5": 0.9041830770801124,
+      "val_f1@0.5": 0.9080238793888495,
+      "val_mcc_calibrated": 0.9154981701643334,
+      "val_f1_calibrated": 0.9200465953616435,
+      "val_fpr_calibrated": 0.005546222639458471,
+      "val_recall_calibrated": 0.9341935483870968,
+      "val_threshold": 0.966,
+      "val_calibration_metric": "mcc"
+    },
+    "train_seconds": 3342.01131620002,
+    "monitor": "mcc_calibrated",
+    "n_train_batches": 4014,
+    "n_val_batches": 168
+  },
+  "threshold": 0.966,
+  "dataset_stats": {
+    "train": {
+      "n_windows": 513744,
+      "n_positive": 29044,
+      "n_negative": 484700,
+      "prevalence": 0.0565339935843533,
+      "n_by_type": {
+        "0": 29044
+      },
+      "n_captures": 41
+    },
+    "val": {
+      "n_windows": 85606,
+      "n_positive": 4650,
+      "n_negative": 80956,
+      "prevalence": 0.05431862252645842,
+      "n_by_type": {
+        "0": 4650
+      },
+      "n_captures": 41
+    },
+    "test": {
+      "n_windows": 85640,
+      "n_positive": 4539,
+      "n_negative": 81101,
+      "prevalence": 0.05300093414292387,
+      "n_by_type": {
+        "0": 4539
+      },
+      "n_captures": 41
+    }
+  },
+  "model_stats": {
+    "n_params": 57073,
+    "n_params_trainable": 57073,
+    "inputs": [
+      "v1"
+    ],
+    "channels": 16,
+    "v2_channels": 8,
+    "receptive_field": 61,
+    "macs": 2926656,
+    "checkpoint_mb": 0.6997,
+    "int8_estimate_mb": 0.0571
+  },
+  "val": {
+    "split": "val",
+    "n_windows_indexed": 85606,
+    "threshold": 0.966,
+    "n": 85606,
+    "n_pos": 4650,
+    "n_neg": 80956,
+    "prevalence": 0.05431862252645842,
+    "tp": 4344,
+    "fp": 449,
+    "tn": 80507,
+    "fn": 306,
+    "mcc": 0.9154981701643334,
+    "f1": 0.9200465953616435,
+    "precision": 0.9063217191737951,
+    "recall": 0.9341935483870968,
+    "fpr": 0.005546222639458471,
+    "specificity": 0.9944537773605415,
+    "balanced_accuracy": 0.9643236628738192,
+    "accuracy": 0.9911805247295751,
+    "auc_pr": 0.9749827968644016,
+    "auc_pr_norm": 0.9735458435245561,
+    "auc_roc": 0.9985839380691064,
+    "recall_at_fpr_0p1": 0.7262365591397849,
+    "recall_at_fpr_1": 0.970752688172043,
+    "tau_at_fpr_1": 0.3474823534488678,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.9090334327908433,
+        "hi": 0.9216286556795595,
+        "mean": 0.915353057480937,
+        "std": 0.0030554434339223825,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.9718477336912776,
+        "hi": 0.9778330988215062,
+        "mean": 0.9749389854788789,
+        "std": 0.0015284147883373356,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.9139465559728004,
+        "hi": 0.9258286436786418,
+        "mean": 0.9199060081748535,
+        "std": 0.0028910273511238435,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.9268817204301075,
+        "hi": 0.9408602150537635,
+        "mean": 0.9340156989247311,
+        "std": 0.0037013076363754047,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.005014761104797668,
+        "hi": 0.006077375364395474,
+        "mean": 0.005552213548100203,
+        "std": 0.0002675925106411418,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 85606,
+    "multiclass": {},
+    "zero_shot_types": [
+      "correlated_signal",
+      "fuzzing",
+      "max_engine_coolant_temp",
+      "max_speedometer",
+      "reverse_light_off",
+      "reverse_light_on"
+    ],
+    "calibration": {
+      "source": "trainer_best_threshold",
+      "threshold": 0.966
+    },
+    "data": {
+      "dataset": "road",
+      "split": "val",
+      "n_captures": 41,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "test": {
+    "split": "test",
+    "n_windows_indexed": 85640,
+    "threshold": 0.966,
+    "n": 85640,
+    "n_pos": 4539,
+    "n_neg": 81101,
+    "prevalence": 0.05300093414292387,
+    "tp": 4467,
+    "fp": 392,
+    "tn": 80709,
+    "fn": 72,
+    "mcc": 0.9483805978890729,
+    "f1": 0.9506277931474781,
+    "precision": 0.9193249639843589,
+    "recall": 0.984137475214805,
+    "fpr": 0.004833479241932898,
+    "specificity": 0.9951665207580671,
+    "balanced_accuracy": 0.989651997986436,
+    "accuracy": 0.9945819710415693,
+    "auc_pr": 0.9774145171233016,
+    "auc_pr_norm": 0.9761504697406882,
+    "auc_roc": 0.9990436516646527,
+    "recall_at_fpr_0p1": 0.6653447896012338,
+    "recall_at_fpr_1": 0.9984578100903283,
+    "tau_at_fpr_1": 0.06385193765163422,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.9439166602788559,
+        "hi": 0.9530536923571843,
+        "mean": 0.948384676848088,
+        "std": 0.0022976911850510567,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.9734773645825466,
+        "hi": 0.9812549138268498,
+        "mean": 0.9773443882193326,
+        "std": 0.0019385530447315626,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.9463630765039851,
+        "hi": 0.9551484875466014,
+        "mean": 0.9506321090056314,
+        "std": 0.002216103341045558,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.9801718440185063,
+        "hi": 0.9876624807226261,
+        "mean": 0.9840575016523463,
+        "std": 0.0018714585836665362,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.004364619425161219,
+        "hi": 0.005326691409477072,
+        "mean": 0.0048284238172155705,
+        "std": 0.0002446524965868397,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 85640,
+    "multiclass": {},
+    "zero_shot_types": [
+      "correlated_signal",
+      "fuzzing",
+      "max_engine_coolant_temp",
+      "max_speedometer",
+      "reverse_light_off",
+      "reverse_light_on"
+    ],
+    "calibration": {
+      "source": "inherited_from_val",
+      "threshold": 0.966
+    },
+    "data": {
+      "dataset": "road",
+      "split": "test",
+      "n_captures": 41,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "zero_shot_types": [
+    "correlated_signal",
+    "fuzzing",
+    "max_engine_coolant_temp",
+    "max_speedometer",
+    "reverse_light_off",
+    "reverse_light_on"
+  ],
+  "checkpoint_metrics": {
+    "train_loss": 0.14018751238252342,
+    "train_loss_bin": 0.14018751238252342,
+    "train_loss_type": 0.0,
+    "train_seconds": 170.75931980006862,
+    "lr": 0.0009460482294732421,
+    "epoch": 9,
+    "val_loss": 0.1291529917341125,
+    "val_auc_pr": 0.9749827968644016,
+    "val_auc_roc": 0.9985839380691064,
+    "val_prevalence": 0.05431862252645842,
+    "val_mcc@0.5": 0.9041830770801124,
+    "val_f1@0.5": 0.9080238793888495,
+    "val_mcc_calibrated": 0.9154981701643334,
+    "val_f1_calibrated": 0.9200465953616435,
+    "val_fpr_calibrated": 0.005546222639458471,
+    "val_recall_calibrated": 0.9341935483870968,
+    "val_threshold": 0.966,
+    "val_calibration_metric": "mcc"
+  },
+  "re_evaluated": true
+}

@@ -1,0 +1,14 @@
+# 仓库内统一 LF 存储；Windows 检出时由 Git 自动处理。
+# 若不设此项，带 shebang 的 .py 在 Linux 上直接执行会报 bad interpreter。
+* text=auto
+*.py    text eol=lf
+*.sh    text eol=lf
+*.md    text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.cff   text eol=lf
+*.json  text eol=lf
+*.csv   text eol=lf
+*.tsv   text eol=lf
+*.txt   text eol=lf
+*.png   binary

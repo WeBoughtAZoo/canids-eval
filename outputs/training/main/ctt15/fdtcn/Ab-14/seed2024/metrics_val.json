@@ -1,0 +1,103 @@
+{
+  "split": "val",
+  "n_windows_indexed": 240372,
+  "threshold": 0.022000000000000002,
+  "n": 240372,
+  "n_pos": 4323,
+  "n_neg": 236049,
+  "prevalence": 0.01798462383305876,
+  "tp": 2919,
+  "fp": 151,
+  "tn": 235898,
+  "fn": 1404,
+  "mcc": 0.7983825463279148,
+  "recall_at_fpr_0p1": 0.6851723340272958,
+  "recall_at_fpr_1": 0.7737682165163081,
+  "tau_at_fpr_0p1": 0.01463103387504816,
+  "tau_at_fpr_1": 0.0016014750581234694,
+  "fpr_at_fpr_0p1": 0.0009997924159814277,
+  "fpr_at_fpr_1": 0.009997924159814276,
+  "auc_pr": 0.8013614226894578,
+  "auc_pr_norm": 0.7977235569509311,
+  "auc_roc": 0.9699333662914746,
+  "f1": 0.789665900175842,
+  "precision": 0.950814332247557,
+  "recall": 0.6752255378209576,
+  "fpr": 0.0006396976898864219,
+  "specificity": 0.9993603023101135,
+  "balanced_accuracy": 0.8372929200655356,
+  "accuracy": 0.993530860499559,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.7876215572416064,
+      "hi": 0.807825205313825,
+      "mean": 0.7978264222737806,
+      "std": 0.005232380471574157,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.7891664127922957,
+      "hi": 0.8119872533853874,
+      "mean": 0.800242732394099,
+      "std": 0.005715741381356745,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.777248655535653,
+      "hi": 0.7996782454640126,
+      "mean": 0.7887126726444894,
+      "std": 0.005726682777314147,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.6572143452877398,
+      "hi": 0.6877953850430915,
+      "mean": 0.6728340283569642,
+      "std": 0.0077977704972594306,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0004989740482579186,
+      "hi": 0.000717911640860883,
+      "mean": 0.0006094000600805486,
+      "std": 5.628590852920927e-05,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 200000,
+  "multiclass": {},
+  "zero_shot_types": [
+    "DoS",
+    "Fuzzing",
+    "RpmSpoofing",
+    "double",
+    "force-neutral",
+    "interval",
+    "speed",
+    "speed-accessory",
+    "standstill",
+    "systematic",
+    "targeted_payload_fuzzing",
+    "triple",
+    "untargeted_payload_fuzzing",
+    "valid_systematic"
+  ],
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.01463103387504816,
+    "fpr_1": 0.0016014750581234694,
+    "source": "calibrated_on_val"
+  },
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.022000000000000002
+  },
+  "data": {
+    "dataset": "ctt15",
+    "split": "val",
+    "n_captures": 23,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  }
+}

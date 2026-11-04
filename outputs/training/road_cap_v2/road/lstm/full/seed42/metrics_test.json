@@ -1,0 +1,234 @@
+{
+  "split": "test",
+  "n_windows_indexed": 89224,
+  "threshold": 0.964,
+  "n": 89224,
+  "n_pos": 5925,
+  "n_neg": 83299,
+  "prevalence": 0.06640589975791267,
+  "tp": 1306,
+  "fp": 438,
+  "tn": 82861,
+  "fn": 4619,
+  "mcc": 0.3869952175953064,
+  "recall_at_fpr_0p1": 0.038312236286919835,
+  "recall_at_fpr_1": 0.23054852320675107,
+  "tau_at_fpr_0p1": 0.9999171495437622,
+  "tau_at_fpr_1": 0.9399950504302979,
+  "fpr_at_fpr_0p1": 0.0005642324637750753,
+  "fpr_at_fpr_1": 0.00555829001548638,
+  "auc_pr": 0.5083528471081256,
+  "auc_pr_norm": 0.47338232668309815,
+  "auc_roc": 0.8963239386272713,
+  "f1": 0.3405919937410353,
+  "precision": 0.7488532110091743,
+  "recall": 0.22042194092827005,
+  "fpr": 0.0052581663645421915,
+  "specificity": 0.9947418336354578,
+  "balanced_accuracy": 0.6075818872818639,
+  "accuracy": 0.9433224244597866,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.26447744466462886,
+      "hi": 0.4996419582177551,
+      "mean": 0.3801457608441317,
+      "std": 0.05757980816225071,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.2244572293782871,
+      "hi": 0.47601594737601555,
+      "mean": 0.3408270636852099,
+      "std": 0.06158118878251914,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.13982207619526882,
+      "hi": 0.34904752649219195,
+      "mean": 0.22427618262392673,
+      "std": 0.05049273574720307,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0024644792391514195,
+      "hi": 0.016921098778407456,
+      "mean": 0.006366106950004491,
+      "std": 0.005182187463557796,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.2766983488863504,
+      "hi": 0.6795513505004993,
+      "mean": 0.507493436522623,
+      "std": 0.1032256676846237,
+      "n_resamples": 1000
+    },
+    "auc_roc": {
+      "lo": 0.806291590915717,
+      "hi": 0.9510956350468819,
+      "mean": 0.8903115402302036,
+      "std": 0.039282792221854775,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_clusters": 13,
+  "bootstrap_method": "cluster",
+  "bootstrap_auc_skipped": false,
+  "density": {
+    "n_positive": 5925,
+    "median": 3.0,
+    "mean": 3.7564556962025315,
+    "p10": 2.0,
+    "p90": 6.0,
+    "frac_le_2": 0.2535021097046414,
+    "frac_le_8": 0.9956118143459916,
+    "frac_ge_25": 0.004388185654008439
+  },
+  "density_table": [
+    {
+      "density_bin": "1-2",
+      "density_lo": 1,
+      "density_hi": 2,
+      "n_positive": 1502,
+      "frac_of_positives": 0.2535021097046414,
+      "recall": 0.24500665778961384,
+      "recall_at_fpr": 0.2583222370173103,
+      "mean_score": 0.31479540566162056,
+      "median_score": 0.0021455736132338643
+    },
+    {
+      "density_bin": "3-8",
+      "density_lo": 3,
+      "density_hi": 8,
+      "n_positive": 4397,
+      "frac_of_positives": 0.7421097046413502,
+      "recall": 0.20991585171707983,
+      "recall_at_fpr": 0.21901296338412554,
+      "mean_score": 0.27825357207991663,
+      "median_score": 0.0013270715717226267
+    },
+    {
+      "density_bin": "25-48",
+      "density_lo": 25,
+      "density_hi": 48,
+      "n_positive": 1,
+      "frac_of_positives": 0.00016877637130801687,
+      "recall": 1.0,
+      "recall_at_fpr": 1.0,
+      "mean_score": 0.9969852566719055,
+      "median_score": 0.9969852566719055
+    },
+    {
+      "density_bin": "49-64",
+      "density_lo": 49,
+      "density_hi": 64,
+      "n_positive": 25,
+      "frac_of_positives": 0.004219409282700422,
+      "recall": 0.56,
+      "recall_at_fpr": 0.56,
+      "mean_score": 0.6293068216594428,
+      "median_score": 0.9934034943580627
+    },
+    {
+      "density_bin": "overall",
+      "density_lo": 1,
+      "density_hi": 64,
+      "n_positive": 5925,
+      "frac_of_positives": 1.0,
+      "recall": 0.22042194092827005,
+      "recall_at_fpr": 0.23054852320675107,
+      "mean_score": 0.28911954625102204,
+      "median_score": 0.001617157133296132
+    }
+  ],
+  "multiclass": {
+    "n": 5925,
+    "accuracy": 0.06295358649789029,
+    "macro_f1": 0.042362506792356994,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 26,
+        "precision": 0.1111111111111111,
+        "recall": 0.038461538461538464,
+        "f1": 0.05714285714285715
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 3899,
+        "precision": 0.8823529411764706,
+        "recall": 0.03462426263144396,
+        "f1": 0.06663376110562685
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1223,
+        "precision": 0.22740524781341107,
+        "recall": 0.19133278822567457,
+        "f1": 0.2078152753108348
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 777,
+        "precision": 0.06818181818181818,
+        "recall": 0.003861003861003861,
+        "f1": 0.007308160779537149
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999171495437622,
+    "fpr_1": 0.9399950504302979,
+    "source": "inherited_from_val"
+  },
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.964
+  },
+  "data": {
+    "dataset": "road",
+    "split": "test",
+    "n_captures": 13,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  }
+}

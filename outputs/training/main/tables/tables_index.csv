@@ -1,0 +1,14 @@
+﻿table,files,generated
+t7_main,table_main.tex; table_main.csv,True
+t7_known,table_known.tex; table_known.csv,True
+t7_suppress,table_suppress.tex; table_suppress.csv,True
+t7b_operating,table_operating.tex; table_operating.csv,True
+t7c_kd,table_kd.tex; table_kd.csv,True
+t7d_threshold,table_threshold.tex; table_threshold.csv,True
+t14_dataset,table_dataset.tex; table_dataset.csv,True
+t8_masquerade,table_masquerade.tex; table_masquerade.csv,True
+t10_ablation,table_ablation.tex; table_ablation.csv,True
+t11_density,table_density.tex; table_density.csv,True
+t12_complexity,table_complexity.tex; table_complexity.csv,True
+t13_stats,table_stats.tex; table_stats.csv,True
+t9_baselines,table_baselines.tex; table_baselines.csv,True

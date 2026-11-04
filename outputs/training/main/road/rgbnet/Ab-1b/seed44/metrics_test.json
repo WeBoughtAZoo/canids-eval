@@ -1,0 +1,158 @@
+{
+  "split": "test",
+  "n_windows_indexed": 85640,
+  "threshold": 0.018000000000000002,
+  "n": 85640,
+  "n_pos": 4539,
+  "n_neg": 81101,
+  "prevalence": 0.05300093414292387,
+  "tp": 4412,
+  "fp": 234,
+  "tn": 80867,
+  "fn": 127,
+  "mcc": 0.9585426416049507,
+  "f1": 0.9606967882416984,
+  "precision": 0.949634093844167,
+  "recall": 0.9720202687816699,
+  "fpr": 0.0028852911801334137,
+  "specificity": 0.9971147088198666,
+  "balanced_accuracy": 0.9845674888007683,
+  "accuracy": 0.9957846800560486,
+  "auc_pr": 0.986980436294882,
+  "auc_pr_norm": 0.9862517671088358,
+  "auc_roc": 0.9993738452037856,
+  "recall_at_fpr_0p1": 0.909892046706323,
+  "recall_at_fpr_1": 0.995153117426746,
+  "tau_at_fpr_1": 0.0008505985024385154,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9547152574962899,
+      "hi": 0.9626755625254857,
+      "mean": 0.9585843827789319,
+      "std": 0.0020956342690124506,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9845356408111229,
+      "hi": 0.9892455720451446,
+      "mean": 0.9869874156138635,
+      "std": 0.0011993207992693814,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9570494573703042,
+      "hi": 0.964630876029383,
+      "mean": 0.9607336703746417,
+      "std": 0.0019879057917196966,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9673936990526548,
+      "hi": 0.9770874641991628,
+      "mean": 0.9721306455166336,
+      "std": 0.0024229299861990962,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0025400426628524927,
+      "hi": 0.0032431782592076547,
+      "mean": 0.0028877449106669457,
+      "std": 0.00018273037391747552,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85640,
+  "multiclass": {
+    "n": 4539,
+    "accuracy": 0.7653668208856577,
+    "macro_f1": 0.5935249675280697,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 485,
+        "precision": 0.605,
+        "recall": 0.24948453608247423,
+        "f1": 0.3532846715328467
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 70,
+        "precision": 1.0,
+        "recall": 0.9571428571428572,
+        "f1": 0.9781021897810218
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2196,
+        "precision": 0.8320278503046127,
+        "recall": 0.8706739526411658,
+        "f1": 0.8509123275478415
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 15,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 658,
+        "precision": 0.976271186440678,
+        "recall": 0.8753799392097265,
+        "f1": 0.9230769230769231
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 390,
+        "precision": 0.9369627507163324,
+        "recall": 0.8384615384615385,
+        "f1": 0.8849797023004059
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 725,
+        "precision": 0.9092664092664092,
+        "recall": 0.6496551724137931,
+        "f1": 0.7578439259855189
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.018000000000000002
+  },
+  "data": {
+    "dataset": "road",
+    "split": "test",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-1b"
+  },
+  "tau_at_fpr_0p1": 0.47799229621887207,
+  "fpr_at_fpr_0p1": 0.0016276001528957719,
+  "fpr_at_fpr_1": 0.007163906733579117,
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.47799229621887207,
+    "fpr_1": 0.0008505985024385154,
+    "source": "inherited_from_val"
+  }
+}

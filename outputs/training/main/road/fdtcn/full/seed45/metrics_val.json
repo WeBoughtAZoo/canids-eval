@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.999,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4498,
+  "fp": 217,
+  "tn": 80739,
+  "fn": 152,
+  "mcc": 0.9583439887318205,
+  "f1": 0.9605979711692472,
+  "precision": 0.9539766702014846,
+  "recall": 0.9673118279569892,
+  "fpr": 0.0026804684025890607,
+  "specificity": 0.9973195315974109,
+  "balanced_accuracy": 0.9823156797772001,
+  "accuracy": 0.995689554470481,
+  "auc_pr": 0.9930242689371626,
+  "auc_pr_norm": 0.9926235926507577,
+  "auc_roc": 0.9996431713603089,
+  "recall_at_fpr_0p1": 0.9380645161290323,
+  "recall_at_fpr_1": 0.9946236559139785,
+  "tau_at_fpr_1": 0.002682939637452364,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9539360884417347,
+      "hi": 0.962732970992855,
+      "mean": 0.9582924270635299,
+      "std": 0.0021728425804496752,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9911825072179329,
+      "hi": 0.9946185497165294,
+      "mean": 0.9929998692818981,
+      "std": 0.0008588371031046067,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9564198126000927,
+      "hi": 0.9647572923043588,
+      "mean": 0.9605466073587628,
+      "std": 0.0020554416748828886,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9619354838709677,
+      "hi": 0.9724731182795698,
+      "mean": 0.9673974193548388,
+      "std": 0.0025930256876316926,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.002334601511932408,
+      "hi": 0.003038687682197737,
+      "mean": 0.0026920549434260588,
+      "std": 0.0001823733653944733,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.9769892473118279,
+    "macro_f1": 0.8064540130009961,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 0.9830508474576272,
+        "f1": 0.9914529914529915
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.9976722532588455,
+        "recall": 0.971441523118767,
+        "f1": 0.9843821773082223
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.9982517482517482,
+        "recall": 0.9752348420153715,
+        "f1": 0.9866090712742981
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 1.0,
+        "recall": 0.9969418960244648,
+        "f1": 0.9984686064318529
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.9930232558139535,
+        "recall": 0.9884259259259259,
+        "f1": 0.9907192575406032
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.999
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 0.9999957084655762,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999957084655762,
+    "fpr_1": 0.002682939637452364,
+    "source": "calibrated_on_val"
+  }
+}

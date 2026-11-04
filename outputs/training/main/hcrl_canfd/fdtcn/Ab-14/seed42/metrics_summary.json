@@ -1,0 +1,277 @@
+{
+  "dataset": "hcrl_canfd",
+  "model": "fdtcn",
+  "variant": "Ab-14",
+  "seed": 42,
+  "run_dir": "D:\\Files\\Personal\\AI works\\WorkBuddy\\CAN IDS\\outputs\\training\\main\\hcrl_canfd\\fdtcn\\Ab-14\\seed42",
+  "config_fingerprint": "466536fe65b7bd42",
+  "preprocess_fingerprint": "47a23a91ba9a27d9",
+  "training": {
+    "epochs_run": 13,
+    "best_epoch": 3,
+    "best_score": 0.9986322714608226,
+    "best_threshold": 0.74,
+    "best_metrics": {
+      "train_loss": 0.004899113205549316,
+      "train_loss_bin": 0.004899113205549316,
+      "train_loss_type": 0.0,
+      "train_seconds": 75.09337429999141,
+      "lr": 0.0009939057285945933,
+      "epoch": 3,
+      "val_loss": 0.0035126283286941048,
+      "val_auc_pr": 0.9998883716166649,
+      "val_auc_roc": 0.9998124804677377,
+      "val_prevalence": 0.5669280752856822,
+      "val_mcc@0.5": 0.9982665686815383,
+      "val_f1@0.5": 0.9992488040169215,
+      "val_mcc_calibrated": 0.9986322714608226,
+      "val_f1_calibrated": 0.9994068098232293,
+      "val_fpr_calibrated": 0.0,
+      "val_recall_calibrated": 0.9988143229784207,
+      "val_threshold": 0.74,
+      "val_calibration_metric": "mcc"
+    },
+    "train_seconds": 1020.9472355999751,
+    "monitor": "mcc_calibrated",
+    "n_train_batches": 1043,
+    "n_val_batches": 44
+  },
+  "threshold": 0.74,
+  "dataset_stats": {
+    "train": {
+      "n_windows": 133464,
+      "n_positive": 76065,
+      "n_negative": 57399,
+      "prevalence": 0.5699289696097825,
+      "n_by_type": {
+        "0": 76065
+      },
+      "n_captures": 3
+    },
+    "val": {
+      "n_windows": 22315,
+      "n_positive": 12651,
+      "n_negative": 9664,
+      "prevalence": 0.5669280752856822,
+      "n_by_type": {
+        "0": 12651
+      },
+      "n_captures": 3
+    },
+    "test": {
+      "n_windows": 22194,
+      "n_positive": 7582,
+      "n_negative": 14612,
+      "prevalence": 0.34162386230512753,
+      "n_by_type": {
+        "0": 7582
+      },
+      "n_captures": 3
+    }
+  },
+  "model_stats": {
+    "n_params": 57073,
+    "n_params_trainable": 57073,
+    "inputs": [
+      "v1"
+    ],
+    "channels": 16,
+    "v2_channels": 8,
+    "receptive_field": 61,
+    "macs": 2926656,
+    "checkpoint_mb": 0.6981,
+    "int8_estimate_mb": 0.0571
+  },
+  "val": {
+    "split": "val",
+    "n_windows_indexed": 22315,
+    "threshold": 0.74,
+    "n": 22315,
+    "n_pos": 12651,
+    "n_neg": 9664,
+    "prevalence": 0.5669280752856822,
+    "tp": 12636,
+    "fp": 0,
+    "tn": 9664,
+    "fn": 15,
+    "mcc": 0.9986322714608226,
+    "f1": 0.9994068098232293,
+    "precision": 1.0,
+    "recall": 0.9988143229784207,
+    "fpr": 0.0,
+    "specificity": 1.0,
+    "balanced_accuracy": 0.9994071614892104,
+    "accuracy": 0.9993278064082456,
+    "auc_pr": 0.9998883716166649,
+    "auc_pr_norm": 0.9997422405448962,
+    "auc_roc": 0.9998124804677377,
+    "recall_at_fpr_0p1": 0.9990514583827366,
+    "recall_at_fpr_1": 0.9991305035175085,
+    "tau_at_fpr_1": 0.018100345507264137,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.9979037841413522,
+        "hi": 0.9992702497858955,
+        "mean": 0.9986277947364388,
+        "std": 0.0003520178274822202,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.9997992020284326,
+        "hi": 0.9999601916465912,
+        "mean": 0.9998893871389387,
+        "std": 4.169464150515273e-05,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.9990901538826694,
+        "hi": 0.9996837194591603,
+        "mean": 0.9994048080014203,
+        "std": 0.0001529143593283491,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.998181961900245,
+        "hi": 0.9993676389218243,
+        "mean": 0.9988103707216819,
+        "std": 0.0003054502067370761,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 22315,
+    "multiclass": {},
+    "zero_shot_types": [
+      "Flooding",
+      "Fuzzing",
+      "Malfunction"
+    ],
+    "calibration": {
+      "source": "trainer_best_threshold",
+      "threshold": 0.74
+    },
+    "data": {
+      "dataset": "hcrl_canfd",
+      "split": "val",
+      "n_captures": 3,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "test": {
+    "split": "test",
+    "n_windows_indexed": 22194,
+    "threshold": 0.74,
+    "n": 22194,
+    "n_pos": 7582,
+    "n_neg": 14612,
+    "prevalence": 0.34162386230512753,
+    "tp": 7575,
+    "fp": 9,
+    "tn": 14603,
+    "fn": 7,
+    "mcc": 0.9983974959364134,
+    "f1": 0.9989450085718053,
+    "precision": 0.9988132911392406,
+    "recall": 0.9990767607491428,
+    "fpr": 0.0006159321105940323,
+    "specificity": 0.9993840678894059,
+    "balanced_accuracy": 0.9992304143192743,
+    "accuracy": 0.9992790844372353,
+    "auc_pr": 0.9997456443622619,
+    "auc_pr_norm": 0.9996136621253792,
+    "auc_roc": 0.9997838171984117,
+    "recall_at_fpr_0p1": 0.9992086520706938,
+    "recall_at_fpr_1": 0.9992086520706938,
+    "tau_at_fpr_1": 0.038087502121925354,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.9975960613272621,
+        "hi": 0.9991016730579045,
+        "mean": 0.9984048758780518,
+        "std": 0.00040078499364129197,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.9994988688828143,
+        "hi": 0.9999370077541386,
+        "mean": 0.9997443859080201,
+        "std": 0.00011258757076515977,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.9984173041413875,
+        "hi": 0.9994084739778819,
+        "mean": 0.9989498106956178,
+        "std": 0.0002638575970110788,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.9982854128198364,
+        "hi": 0.9997362173568979,
+        "mean": 0.9990650224215246,
+        "std": 0.00035777420124800225,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.00027203668217903247,
+        "hi": 0.0010265535176567206,
+        "mean": 0.0006048453326033398,
+        "std": 0.00020281513856269592,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 22194,
+    "multiclass": {},
+    "zero_shot_types": [
+      "Flooding",
+      "Fuzzing",
+      "Malfunction"
+    ],
+    "calibration": {
+      "source": "inherited_from_val",
+      "threshold": 0.74
+    },
+    "data": {
+      "dataset": "hcrl_canfd",
+      "split": "test",
+      "n_captures": 3,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "zero_shot_types": [
+    "Flooding",
+    "Fuzzing",
+    "Malfunction"
+  ],
+  "checkpoint_metrics": {
+    "train_loss": 0.004899113205549316,
+    "train_loss_bin": 0.004899113205549316,
+    "train_loss_type": 0.0,
+    "train_seconds": 75.09337429999141,
+    "lr": 0.0009939057285945933,
+    "epoch": 3,
+    "val_loss": 0.0035126283286941048,
+    "val_auc_pr": 0.9998883716166649,
+    "val_auc_roc": 0.9998124804677377,
+    "val_prevalence": 0.5669280752856822,
+    "val_mcc@0.5": 0.9982665686815383,
+    "val_f1@0.5": 0.9992488040169215,
+    "val_mcc_calibrated": 0.9986322714608226,
+    "val_f1_calibrated": 0.9994068098232293,
+    "val_fpr_calibrated": 0.0,
+    "val_recall_calibrated": 0.9988143229784207,
+    "val_threshold": 0.74,
+    "val_calibration_metric": "mcc"
+  },
+  "re_evaluated": true
+}

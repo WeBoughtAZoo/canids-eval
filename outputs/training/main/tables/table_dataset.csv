@@ -1,0 +1,4 @@
+﻿dataset,protocol,captures,frames,attack_frames,attack_rate,split_mode,w_train,w_val,w_test
+hcrl_canfd,CANFD,3,7120602,1630473,0.22897965649533564,block_interleaved,133464,22315,22194
+road,CAN2.0,41,27415983,107518,0.0039217269721826134,block_interleaved,513744,85606,85640
+ctt15,CAN2.0,310,251917389,2262962,0.00898295274090825,semantic_role,1529336,240372,2930997

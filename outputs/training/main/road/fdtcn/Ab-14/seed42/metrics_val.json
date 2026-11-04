@@ -1,0 +1,95 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.010000000000000002,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4320,
+  "fp": 285,
+  "tn": 80671,
+  "fn": 330,
+  "mcc": 0.9297645058920845,
+  "f1": 0.9335494327390599,
+  "precision": 0.9381107491856677,
+  "recall": 0.9290322580645162,
+  "fpr": 0.0035204308513266465,
+  "specificity": 0.9964795691486733,
+  "balanced_accuracy": 0.9627559136065947,
+  "accuracy": 0.9928159241174684,
+  "auc_pr": 0.9822075597334942,
+  "auc_pr_norm": 0.9811855867205087,
+  "auc_roc": 0.9988275563999454,
+  "recall_at_fpr_0p1": 0.8253763440860215,
+  "recall_at_fpr_1": 0.9735483870967742,
+  "tau_at_fpr_1": 0.00059696682728827,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.9240301815431031,
+      "hi": 0.9351762398520174,
+      "mean": 0.9297603495887652,
+      "std": 0.002936430543448418,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9798716840240669,
+      "hi": 0.9842588605565255,
+      "mean": 0.9821879175848536,
+      "std": 0.0011145388883625216,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9280621389894811,
+      "hi": 0.9386568289973533,
+      "mean": 0.9335418668922365,
+      "std": 0.0027805223599029,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9208602150537635,
+      "hi": 0.9361290322580645,
+      "mean": 0.9290118279569892,
+      "std": 0.003871505727639754,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0031375067938139234,
+      "hi": 0.003977469242551509,
+      "mean": 0.003519924403379614,
+      "std": 0.00021354711675037488,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {},
+  "zero_shot_types": [
+    "correlated_signal",
+    "fuzzing",
+    "max_engine_coolant_temp",
+    "max_speedometer",
+    "reverse_light_off",
+    "reverse_light_on"
+  ],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.010000000000000002
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  },
+  "tau_at_fpr_0p1": 0.9760957360267639,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.9760957360267639,
+    "fpr_1": 0.00059696682728827,
+    "source": "calibrated_on_val"
+  }
+}

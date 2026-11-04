@@ -1,0 +1,158 @@
+{
+  "split": "test",
+  "n_windows_indexed": 85640,
+  "threshold": 0.629,
+  "n": 85640,
+  "n_pos": 4539,
+  "n_neg": 81101,
+  "prevalence": 0.05300093414292387,
+  "tp": 4288,
+  "fp": 946,
+  "tn": 80155,
+  "fn": 251,
+  "mcc": 0.8726316852262024,
+  "f1": 0.8775196971247314,
+  "precision": 0.819258693160107,
+  "recall": 0.9447014760960564,
+  "fpr": 0.011664467762419698,
+  "specificity": 0.9883355322375803,
+  "balanced_accuracy": 0.9665185041668183,
+  "accuracy": 0.9860228865016347,
+  "auc_pr": 0.9192087284243133,
+  "auc_pr_norm": 0.9146870630726895,
+  "auc_roc": 0.9964041597605486,
+  "recall_at_fpr_0p1": 0.4976867151354924,
+  "recall_at_fpr_1": 0.9248733201145627,
+  "tau_at_fpr_1": 0.9612343907356262,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.8664466448415321,
+      "hi": 0.8790425395205512,
+      "mean": 0.8727405905180171,
+      "std": 0.0032512838787587604,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9109069028837498,
+      "hi": 0.9269710306308394,
+      "mean": 0.9192347083527561,
+      "std": 0.003949926458486841,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.8716117929426069,
+      "hi": 0.8838133037008116,
+      "mean": 0.8776296111152838,
+      "std": 0.0031564124756931376,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9378662701035471,
+      "hi": 0.9510905485789821,
+      "mean": 0.94461797752809,
+      "std": 0.0033415104114269422,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.01089998890272623,
+      "hi": 0.012391955709547355,
+      "mean": 0.011644209072637822,
+      "std": 0.00037927657131771623,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85640,
+  "multiclass": {
+    "n": 4539,
+    "accuracy": 0.532275831680987,
+    "macro_f1": 0.3121627105922039,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 485,
+        "precision": 0.7399527186761229,
+        "recall": 0.6453608247422681,
+        "f1": 0.6894273127753304
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 70,
+        "precision": 0.8333333333333334,
+        "recall": 0.07142857142857142,
+        "f1": 0.13157894736842105
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2196,
+        "precision": 0.5383159886471145,
+        "recall": 0.7773224043715847,
+        "f1": 0.636109558412521
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 15,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 658,
+        "precision": 0.6981132075471698,
+        "recall": 0.11246200607902736,
+        "f1": 0.193717277486911
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 390,
+        "precision": 0.7237762237762237,
+        "recall": 0.5307692307692308,
+        "f1": 0.6124260355029586
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 725,
+        "precision": 0.5116279069767442,
+        "recall": 0.15172413793103448,
+        "f1": 0.23404255319148937
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.629
+  },
+  "data": {
+    "dataset": "road",
+    "split": "test",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 0.9999428987503052,
+  "fpr_at_fpr_0p1": 0.002071491103685528,
+  "fpr_at_fpr_1": 0.009740940308997423,
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999428987503052,
+    "fpr_1": 0.9612343907356262,
+    "source": "inherited_from_val"
+  }
+}

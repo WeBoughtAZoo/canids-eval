@@ -1,0 +1,103 @@
+{
+  "split": "val",
+  "n_windows_indexed": 240372,
+  "threshold": 0.001,
+  "n": 240372,
+  "n_pos": 4323,
+  "n_neg": 236049,
+  "prevalence": 0.01798462383305876,
+  "tp": 3228,
+  "fp": 66,
+  "tn": 235983,
+  "fn": 1095,
+  "mcc": 0.8532413889629762,
+  "f1": 0.8475777865301299,
+  "precision": 0.9799635701275046,
+  "recall": 0.7467036780013879,
+  "fpr": 0.0002796029637914162,
+  "specificity": 0.9997203970362086,
+  "balanced_accuracy": 0.8732120375187983,
+  "accuracy": 0.9951699865208926,
+  "auc_pr": 0.864904596008326,
+  "auc_pr_norm": 0.8624304595728571,
+  "auc_roc": 0.9712042026168389,
+  "recall_at_fpr_0p1": 0.7908859588248901,
+  "recall_at_fpr_1": 0.8475595651168171,
+  "tau_at_fpr_1": 6.674300720987958e-07,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.8447894487246347,
+      "hi": 0.8622600137403816,
+      "mean": 0.8536650126266636,
+      "std": 0.0044391519792241355,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.8536368625516103,
+      "hi": 0.8735072141647435,
+      "mean": 0.8639354986655161,
+      "std": 0.005130092628360857,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.8384626976570804,
+      "hi": 0.8575906753607692,
+      "mean": 0.8479734102935577,
+      "std": 0.004836954067254138,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.7328259660828468,
+      "hi": 0.7611898804559355,
+      "mean": 0.7470308590492079,
+      "std": 0.007227438145623387,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.0002036628768399668,
+      "hi": 0.0003513184625489427,
+      "mean": 0.0002720019551636177,
+      "std": 3.786062520199512e-05,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 200000,
+  "multiclass": {},
+  "zero_shot_types": [
+    "DoS",
+    "Fuzzing",
+    "RpmSpoofing",
+    "double",
+    "force-neutral",
+    "interval",
+    "speed",
+    "speed-accessory",
+    "standstill",
+    "systematic",
+    "targeted_payload_fuzzing",
+    "triple",
+    "untargeted_payload_fuzzing",
+    "valid_systematic"
+  ],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.001
+  },
+  "data": {
+    "dataset": "ctt15",
+    "split": "val",
+    "n_captures": 23,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  },
+  "tau_at_fpr_0p1": 5.363813033909537e-05,
+  "fpr_at_fpr_0p1": 0.0009997924159814277,
+  "fpr_at_fpr_1": 0.009997924159814276,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 5.363813033909537e-05,
+    "fpr_1": 6.674300720987958e-07,
+    "source": "calibrated_on_val"
+  }
+}

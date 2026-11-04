@@ -1,0 +1,101 @@
+{
+  "split": "test",
+  "n_windows_indexed": 2930997,
+  "threshold": 0.022000000000000002,
+  "n": 2930997,
+  "n_pos": 236953,
+  "n_neg": 2694044,
+  "prevalence": 0.08084382208511302,
+  "tp": 109710,
+  "fp": 7262,
+  "tn": 2686782,
+  "fn": 127243,
+  "mcc": 0.6410275481137868,
+  "recall_at_fpr_0p1": 0.47205985997223077,
+  "recall_at_fpr_1": 0.5311728486239887,
+  "tau_at_fpr_0p1": 0.01463103387504816,
+  "tau_at_fpr_1": 0.0016014750581234694,
+  "fpr_at_fpr_0p1": 0.0030552581917741507,
+  "fpr_at_fpr_1": 0.011162401207998088,
+  "auc_pr": 0.6238685575698355,
+  "auc_pr_norm": 0.5907861455237982,
+  "auc_roc": 0.7539313961679979,
+  "f1": 0.6199618563254927,
+  "precision": 0.9379167664056355,
+  "recall": 0.4630032116073652,
+  "fpr": 0.002695575870327285,
+  "specificity": 0.9973044241296727,
+  "balanced_accuracy": 0.730153817868519,
+  "accuracy": 0.9541094719646591,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.6322978322511761,
+      "hi": 0.644796836267382,
+      "mean": 0.6384864567767458,
+      "std": 0.0032221215028267526,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.6142024398992068,
+      "hi": 0.6282153083135363,
+      "mean": 0.6210427625095686,
+      "std": 0.0035911439856913157,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.609916447526768,
+      "hi": 0.6241940375369267,
+      "mean": 0.6171297064263281,
+      "std": 0.0036650515553063034,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.4528418578761828,
+      "hi": 0.4676897148865112,
+      "mean": 0.4601579565835859,
+      "std": 0.0038683423782516478,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.00250229830659682,
+      "hi": 0.0029809988522066463,
+      "mean": 0.00273591505241227,
+      "std": 0.0001233469409060342,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 200000,
+  "multiclass": {},
+  "zero_shot_types": [
+    "DoS",
+    "Fuzzing",
+    "RpmSpoofing",
+    "double",
+    "force-neutral",
+    "interval",
+    "masquerade",
+    "speed",
+    "speed-accessory",
+    "standstill",
+    "systematic",
+    "triple"
+  ],
+  "op_source": "inherited_from_val",
+  "operating_points": {
+    "fpr_0p1": 0.01463103387504816,
+    "fpr_1": 0.0016014750581234694,
+    "source": "inherited_from_val"
+  },
+  "calibration": {
+    "source": "inherited_from_val",
+    "threshold": 0.022000000000000002
+  },
+  "data": {
+    "dataset": "ctt15",
+    "split": "test",
+    "n_captures": 224,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-14"
+  }
+}

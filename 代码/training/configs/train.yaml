@@ -1,0 +1,563 @@
+# =============================================================================
+# train.yaml —— 训练与测试唯一配置文件（single source of truth）
+# =============================================================================
+# 设计约定（违反即视为 bug）：
+#   1. 本文件是训练 / 评估 / 出图全部参数的**唯一**来源；Python 代码中不得出现
+#      任何业务数值常量（学习率、批大小、轮数、阈值网格、图像尺寸等一律从此读）。
+#   2. 代码只做“键存在性 + 取值范围 + 交叉一致性”校验，缺键即报错，**不提供默认值**。
+#      → 任何参数的改动都必须落在本文件，改动可被 git diff 审阅。
+#   3. 相对路径一律相对 `project.root` 解析；`project.root` 本身相对本文件所在目录。
+#   4. 与预处理模块的接口只有两处：02_tensors/*.npy 的布局、03_manifest/* 的切分与标注。
+#      本模块不 import 任何 preprocess.* 代码（完全隔离）。
+#
+# 交付口径来源：《最终研究方案与SCI论文大纲-v3定稿.html》§4.5 / §4.8 / §6.2 / §6.3 / §6.8
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 0. 项目与运行标识
+# -----------------------------------------------------------------------------
+project:
+  name: canids                     # 仅用于日志/清单标识
+  root: ../../..                   # 相对本文件目录 → <项目根>
+  output_root: outputs/training    # 相对 project.root
+  run_name: baseline               # 实验批次名；留空字符串则由时间戳生成
+
+paths:
+  tensors_root: 训练数据集            # 预处理产物根（相对 project.root）
+  tensor_subdir: 02_tensors
+  manifest_subdir: 03_manifest
+  dataset_dirs:                    # dataset key → 产物子目录
+    hcrl_canfd: HCRL_CANFD
+    road: ROAD
+    ctt15: CTT_v1.5
+  figures_subdir: figures
+  # ★ 模型与全部产物的落盘目录模板（需求 2 的答案）
+  #   可用占位符：{output_root} {run_name} {dataset} {model} {variant} {seed}
+  #   例：outputs/training/baseline/ctt15/fdtcn/full/seed42/
+  run_dir_template: "{output_root}/{run_name}/{dataset}/{model}/{variant}/seed{seed}"
+
+artifacts:
+  # ★ 模型保存文件名（相对 run_dir）；论文/复现实验请统一引用 best.pt
+  checkpoint:
+    best: checkpoints/best.pt        # 验证集监控指标最优（默认 val MCC）
+    last: checkpoints/last.pt        # 最后一个 epoch（断点续训用）
+    final: checkpoints/model_final.pt # 训练结束时的权重（= best 的副本，含完整元数据）
+  config_snapshot: config_resolved.yaml
+  label_map: label_map.json
+  history: history.csv
+  metrics: metrics_{split}.json
+  metrics_summary: metrics_summary.json
+  predictions: predictions_{split}.npz
+  per_type_table: per_type_{split}.csv
+  per_family_table: per_family_{split}.csv
+  # ★ 2026-10-28：攻击帧密度分层表（1–2 / 3–8 / 9–24 / 25–48 / 49–64 帧）
+  per_density_table: per_density_{split}.csv
+  threshold_curve: threshold_curve_{split}.csv
+  run_manifest: run_manifest.json
+  env: env.json
+  log: train.log
+  figures_index: figures_index.csv
+
+# -----------------------------------------------------------------------------
+# 1. 数据读取（只读预处理产物）
+# -----------------------------------------------------------------------------
+data:
+  datasets: [hcrl_canfd]           # 可选 hcrl_canfd / road / ctt15；CLI --dataset 可覆盖
+  splits: [train, val, test]
+  window:
+    T: 64                          # 窗长（帧）；必须与 env.json 的 WIN_T 一致
+    stride: {train: 32, val: 64, test: 64}   # train 半重叠；val/test 零重叠
+    label_rule: any_frame          # 窗内任一帧为攻击 → 窗口标攻击（保守口径）
+  v1:                              # 帧级 16 维编码（顺序即通道下标，禁止重排）
+    dtype: float16
+    channels:
+      - dt_norm
+      - dt_dev
+      - id_norm
+      - id_freq
+      - payload_len_norm
+      - pad_ratio
+      - proto_flag
+      - brs_flag
+      - esi_flag
+      - byte_mean
+      - byte_std
+      - byte_entropy
+      - nonzero_ratio
+      - payload_delta
+      - payload_u32
+      - period_stability
+  v2:                              # 字节图（供 FD-RGBNet）
+    channels: 8                    # 4 数据通道 + 4 逐字节填充掩码通道
+    mask_channels: 4
+    height: 64                     # = 窗长 T
+    width: 8                       # 32 字节 / 4 通道
+    # ★ 2026-10-28：可选的显式通道子集（null = 用前 active_channels 个）。
+    #   用途：CAN 2.0 语料 DLC ≤ 8，只有通道 0（字节 0–7）与其掩码（通道 4）非零；
+    #   做 RGBNet-8B 公平性对照时由消融变体覆盖为 [0, 4]。
+    channel_index: null
+  aux:
+    # 预留：true 时 DataLoader 额外返回 [T] 的 id_valid 数组。
+    # 当前四个主干都未消费该输入（FD-TCN 的 16 维口径已冻结），开启只会增加 I/O。
+    id_valid: false
+  # E5 负对照（v6.4）：true 时在**训练期**按 capture 内置换帧标签（val/test 不变）。
+  # 期望结果：test MCC 塌到 ≈0。若仍显著 >0，说明存在经由 capture 身份/索引的泄漏。
+  # ⚠ 只用于负对照实验，不得与正常 run 混在同一条结论里。
+  label_shuffle: false
+  manifest_check:
+    verify_window_counts: true     # 用 manifest 自带窗口数校验索引构建（防跨块窗口）
+    verify_channels: true          # 用 env.json 校验 16 通道名与顺序
+  dataloader:
+    num_workers: 0                 # Windows 下建议 0；Linux 可 4~8
+    pin_memory: false
+    persistent_workers: false
+    prefetch_factor: 2
+    drop_last_train: false
+  limits:                          # 冒烟/调试用窗口上限；null = 不限制
+    max_train_windows: null
+    max_val_windows: null
+    max_test_windows: null
+  sampling:
+    # capture_balanced：按采集文件均衡（w ∝ 1/n_windows^alpha），
+    #                   避免 ROAD 单个长采集占训练窗口 32% 的采集偏斜
+    # none：按数据集顺序遍历
+    train: capture_balanced
+    alpha: 0.5
+    # 单数据集训练时该权重会被归一化抵消（仅预留多数据集联合训练）
+    dataset_weights: {hcrl_canfd: 1.0, road: 1.0, ctt15: 1.0}
+    num_samples: dataset_size      # dataset_size | fixed
+    fixed_num_samples: null
+
+# -----------------------------------------------------------------------------
+# 2. 标签空间（多分类头）
+# -----------------------------------------------------------------------------
+label_space:
+  multiclass: true
+  source: manifest_attack_type     # 类别表从 train 侧 manifest 派生（不硬编码类名）
+  min_train_windows: 1             # 训练窗口数低于该值的类型并入 unknown
+  unknown_class: true              # 预留 unknown_attack 类，承载 zero-shot 类型
+  unknown_label: unknown_attack
+
+# -----------------------------------------------------------------------------
+# 3. 模型
+# -----------------------------------------------------------------------------
+model:
+  name: fdtcn                      # 可选 fdtcn / rgbnet / lstm / transformer
+  variants:
+    fdtcn:                         # §4.5 主线：因果膨胀 TCN，双头
+      in_channels: auto            # auto = 实际启用通道数（随消融变化）
+      proj_channels: 32
+      block_channels: [64, 64, 64, 64]
+      kernel_size: 3
+      dilations: [1, 2, 4, 8]      # 感受野 = 1 + 2·Σ(k−1)·d = 61 帧
+      dropout: 0.2
+      se_reduction: 16
+      residual: projection_if_needed   # in!=out 用 1×1 Conv，否则 Identity
+      head_hidden: 64
+      n_classes: auto              # auto = len(label_map)
+      # ★ 2026-10-28：时序聚合方式。last_mean 与既有 113 个 run 完全一致；
+      #   last_mean_max 增加 max 分支（维度 3C），用于"稀疏正例"消融。
+      pooling: last_mean           # last_mean | last_mean_max
+      # ★ 2026-10-28：逐帧二分类头（+C 参数）。默认关闭；开启须同时打开 loss.aux_frame。
+      aux_frame: false
+    rgbnet:                        # §4.6 下界基线：深度可分离 CNN（类 RGB 流水线）
+      in_channels: auto            # auto = 4 或 8（取决于掩码消融）
+      stem_channels: 24
+      block_channels: [48, 48, 64]
+      kernel_size: 3
+      dropout: 0.2
+      head_hidden: 64
+      n_classes: auto
+    lstm:                          # 主干族对照
+      in_channels: auto
+      hidden: 32
+      num_layers: 1
+      dropout: 0.2
+      head_hidden: 64
+      n_classes: auto
+      aux_frame: false
+    transformer:                   # 主干族对照（因果掩码）
+      in_channels: auto
+      d_model: 32
+      nhead: 4
+      num_layers: 2
+      dim_feedforward: 64
+      dropout: 0.1
+      head_hidden: 64
+      n_classes: auto
+      aux_frame: false
+
+# -----------------------------------------------------------------------------
+# 4. 损失
+# -----------------------------------------------------------------------------
+loss:
+  binary:
+    type: weighted_bce             # weighted_bce | focal（Ab-6 切换）
+    pos_weight: auto               # auto = n_neg / n_pos（窗口级训练集）
+    focal_gamma: 2.0
+    focal_alpha: 0.25
+  multiclass:
+    type: ce
+    class_weight: none             # none | balanced
+    label_smoothing: 0.0
+  lambda_a: 1.0                    # 二分类头权重
+  lambda_b: 0.5                    # 攻击类型头权重
+  lambda_reg: 0.0                  # 显式 L2（默认 0：L2 由 optimizer.weight_decay 承担，避免重复）
+  # ★ 2026-10-28：逐帧辅助监督。窗口标签 any_frame 把"1 帧异常"与"64 帧异常"混为一类；
+  #   帧级标签本来就在张量里，直接用它对稀疏正例做密集监督。
+  #   默认关闭（与既有 run 完全一致）；开启后 weight=0.3、帧级 pos_weight 由训练集自动估计。
+  aux_frame:
+    enabled: false
+    weight: 0.3
+
+# -----------------------------------------------------------------------------
+# 5. 优化与训练
+# -----------------------------------------------------------------------------
+train:
+  epochs: 60
+  batch_size: 128
+  eval_batch_size: 512
+  optimizer:
+    name: adamw
+    lr: 1.0e-3
+    weight_decay: 1.0e-4
+    betas: [0.9, 0.999]
+  scheduler:
+    name: cosine                    # cosine | none
+    eta_min_ratio: 0.01
+    warmup_epochs: 0
+  grad_clip_norm: 1.0
+  amp: false                       # CPU 训练关闭
+  # ★ 2026-10-17：由 [42] 扩展为 5 seeds（论文 §5.5 要求 mean±std）。
+  #   注意：切分本身是确定性的（block_interleaved 不用随机数），
+  #   因此 5 seeds 只反映**初始化与采样顺序**的不确定性；划分不确定性另由 Ab-10 / K 敏感性覆盖。
+  # ★ 2026-10-27 修正（可复现性）：原值 [42,1234,2024,7,2026] 与**实际执行的目录不符**
+  #   （outputs/training/main 下三个数据集 × 四个模型均为 seed42–seed46）。
+  #   现改为与实际一致，使本配置可复现整批 5-seed 实验；FD-RGBNet/LSTM/Transformer 取前 3 个。
+  # ★ 2026-10-30 补充（审计 D4-3 / R-3）：例外只有 Ab-14（CTT，42/1234/2024），
+  #   见 ablation.variants.Ab-14 的溯源注释。正文须书面解释"主模型 5 seeds 用于降低
+  #   负结果的方差不确定性，基线 3 seeds 受算力预算限制"——该解释对本文有利，不必回避。
+  seeds: [42, 43, 44, 45, 46]
+  early_stopping:
+    enabled: true
+    monitor: mcc_calibrated        # mcc_calibrated | mcc@0.5 | auc_pr | val_loss
+    mode: max
+    patience: 10
+    min_delta: 0.001
+  log_interval: 50                 # 每 N 个 batch 打印一次
+
+# -----------------------------------------------------------------------------
+# 6. 阈值标定（val 上选 τ，test 原样使用）
+# -----------------------------------------------------------------------------
+calibration:
+  split: val
+  metric: mcc                      # mcc | f1 | fpr
+  # ★ 2026-10-28：ROAD 上 5/5 seeds 的 τ 恰好等于网格上界 0.999，说明最优点
+  #   可能在网格之外，此时报出的 MCC 不是可达最大值。include_sentinel=true 时
+  #   仅在"最大观测分数之上"追加一个候选点（不改变网格密度）；是否触发由
+  #   metrics 的 calibration.at_grid_max 标注。默认 false：既有 run 复算逐位一致。
+  grid: {min: 0.001, max: 0.999, step: 0.001, include_sentinel: false}
+  fpr_target: null                 # metric=fpr 时生效
+
+# -----------------------------------------------------------------------------
+# 7. 评估
+# -----------------------------------------------------------------------------
+eval:
+  splits: [val, test]
+  # 报告白名单：内部始终全量计算（图/表/交叉校验都要用），此处只控制 JSON 里写哪些。
+  # ★ 2026-10-27 修正：此键现在**真正生效**，但只裁剪"可选指标"；
+  #   溯源字段（threshold/prevalence/n_pos…）、混淆计数（tp/fp/tn/fn）、
+  #   MCC 与操作点字段（recall_at_fpr_*/fpr_at_fpr_*）属必留集合，删了会打断
+  #   T7a/T7c/T7d/T7f 与 fig04，见 metrics.MANDATORY_KEYS。
+  metrics: [mcc, auc_pr, auc_pr_norm, auc_roc, f1, precision, recall, fpr,
+            specificity, balanced_accuracy, accuracy]
+  bootstrap:
+    enabled: true
+    # ★ 2026-10-28：按 **capture 聚类**重采样。窗口级 i.i.d. 把同车同工况的窗口
+    #   当独立样本，实测把 CI 压窄约 10×（CTT ±0.6 pt → ±7 pt）。
+    #   false 时退回旧的 i.i.d. 口径（仅为复现 2026-10-27 及更早的产物）。
+    cluster: true
+    n_resamples: 1000
+    ci: 0.95
+    seed: 42
+    max_samples: 200000            # i.i.d. 路径的分层子采样上限（聚类路径不使用）
+    auc_max_windows: 200000        # 聚类路径下 AUC 逐样本重算的上限；超过则跳过并标注
+  # ★ 2026-10-28：攻击帧密度分层（1–2 / 3–8 / 9–24 / 25–48 / 49–64 帧）。
+  #   窗口标签为 any_frame，密度是解释架构差异的主变量（90% 的差距来自 ≤8 帧）。
+  density_bins: [[1, 2], [3, 8], [9, 24], [25, 48], [49, 64]]
+  per_attack_type: true
+  evaluability:                    # 分层可评估性分级（§6.3 r2）
+    sufficient: 1000               # test 正窗口 ≥ 此值：正常报告
+    usable: 100                    # 100–1000：报告并附样本量
+    insufficient: 30               # 30–100：标注样本量不足
+  mcnemar:
+    enabled: true
+    alpha: 0.05
+    correction: true               # 连续性校正（仅窗口级路径使用）
+    # ★ 2026-10-28：改**簇级**检验。窗口级 McNemar 把重叠窗口（test stride 64、
+    #   W=64 时仍共享 0–32 帧）与同录音窗口当独立样本，不一致对计数被复制放大，
+    #   p 值可小几个数量级。簇级把每 capture 压成一个"净优势"观测，再做符号翻转
+    #   置换检验；窗口级 p 仍写入 comparison.csv 的 p_value_window 列，只作参考。
+    #   false 时退回旧口径（复现 2026-10-27 及更早的 comparison.csv）。
+    cluster: true
+
+# -----------------------------------------------------------------------------
+# 8. 图表（SCI 规范：矢量 PDF + 600 dpi PNG 双份）
+# -----------------------------------------------------------------------------
+figures:
+  enabled: true
+  ids: [fig01, fig02, fig03, fig04, fig05, fig06, fig07, fig08, fig09,
+        fig10, fig11, fig12, fig13, fig14, fig15, fig16, fig17]
+  formats: [pdf, png]              # PDF 用于投稿排版；PNG 用于预览/审阅
+  png_dpi: 600
+  # tight：裁掉白边（当前默认，宽度约为标称值的 95–97%）
+  # exact：严格保持 width_in（实测 fig01/06/10 无裁切，投稿前建议改用 exact 并逐张目检）
+  save_bbox: tight
+  width_in: {single: 3.5, double: 7.16}   # IEEE 单栏 / 双栏宽
+  style:
+    font.family: DejaVu Sans
+    font.size: 9
+    axes.titlesize: 10
+    axes.labelsize: 9
+    legend.fontsize: 8
+    xtick.labelsize: 8
+    ytick.labelsize: 8
+    axes.grid: true
+    grid.alpha: 0.3
+    grid.linewidth: 0.5
+    axes.spines.top: false
+    axes.spines.right: false
+    lines.linewidth: 1.3
+    patch.linewidth: 0.6
+    figure.dpi: 120
+    savefig.bbox: tight
+    savefig.pad_inches: 0.02
+    savefig.transparent: false
+    # ★ 投稿硬性要求：PDF 只能嵌 Type 1 或 TrueType，matplotlib 默认 Type 3 会被
+    #   IEEE / Elsevier 的排版检查拒绝（或渲染异常）。42 = TrueType。
+    pdf.fonttype: 42
+    ps.fonttype: 42
+    svg.fonttype: none
+    # 数学符号与正文同族（默认 dejavusans，显式写出防止环境差异）
+    mathtext.fontset: dejavusans
+  palette:
+    primary: "#1F4E79"
+    secondary: "#C00000"
+    accent: "#7F7F7F"
+    tertiary: "#2E75B6"
+    quaternary: "#ED7D31"
+    band: "#DCE6F1"
+
+# -----------------------------------------------------------------------------
+# 8b. 论文表格（LaTeX booktabs + CSV）
+# -----------------------------------------------------------------------------
+#: 表格与图分开管理：图是"看图说话"，表是"可被引用/复算"的数字。两者都从 run 产物生成。
+tables:
+  enabled: true
+  dir: tables
+  formats: [tex, csv]              # tex 供 \input；csv 供核对
+  decimals: 3                      # MCC / F1 / FPR
+  decimals_auc: 4                  # AUC-PR 用 4 位（0.9995 与 1.0000 必须能区分）
+  # 数据集在论文中的显示名（表内使用，避免暴露内部键名）
+  dataset_display:
+    hcrl_canfd: "HCRL CAN-FD"
+    road: "ROAD"
+    ctt15: "CTT v1.5"
+
+  # ★ 2026-10-27 新增：T7 主表收哪些变体。
+  #   原实现只收 ablation.default_variant（full），使协议盲共报模型 FD-TCN-PF（Ab-12）
+  #   永远进不了主表。此处显式列出：第一个必须是 default_variant（作为参照行）。
+  main:
+    variants: [full, Ab-12]
+    variant_labels:                 # 表内显示名（不写则用变体原名）
+      Ab-12: "FD-TCN-PF"
+
+  captions:                        # 英文（论文语言），改文案无需改代码
+    main: "Main results on the held-out test split (window level)."
+    operating: "Operating points at fixed false-positive rates."
+    kd: "KD-Logic distillation: fidelity, accuracy and rule complexity."
+    dataset: "Corpus specifications and split sizes (recomputed from the manifest)."
+    masquerade: "Masquerade-specific detection performance."
+    ablation: "Ablation study on the unified frame encoding."
+    complexity: "Model complexity and on-disk footprint."
+    stats: "Pairwise McNemar tests with Holm correction."
+    density: "Recall stratified by the number of attack frames per window."
+    threshold: "Threshold stability across seeds and validation-to-test degradation."
+    known: "Known-attack regime: zero-shot family removed from the positive set."
+    suppress: "Sensitivity to the unlabelled suppress captures in the test split."
+    baselines: "Neural temporal model versus tabular strong baselines on identical windows."
+  labels:
+    main: tab:main
+    known: tab:main_known
+    suppress: tab:suppress
+    baselines: tab:baselines
+    operating: tab:operating
+    kd: tab:kd
+    dataset: tab:dataset
+    masquerade: tab:masq
+    ablation: tab:ablation
+    complexity: tab:complexity
+    stats: tab:stats
+    threshold: tab:threshold
+    density: tab:density
+
+# -----------------------------------------------------------------------------
+# 8c. 配对显著性检验（T13）
+# -----------------------------------------------------------------------------
+compare:
+  enabled: true
+  # model: 同数据集、同变体的不同主干两两比较；ablation: 同主干的 variant vs full
+  scope: [model, ablation]
+  alpha: 0.05
+  all_seeds: false                 # true 时每个 seed 各出一行（5 seeds 全做）
+
+# -----------------------------------------------------------------------------
+# 9. 消融开关（只描述“改什么”，数值仍复用上面的全局设置）
+# -----------------------------------------------------------------------------
+ablation:
+  default_variant: full
+  variants:
+    full: {}
+    # ★ 2026-10-17 修正：必须**同时**去掉 payload_len_norm 与 pad_ratio。
+    #   二者由同一个 dlc 派生且互为补：pad_ratio = 1 − payload_len_norm
+    #   （实测 corr = −1.000000，max|(1−x)−y| = 0.00e+00）。
+    #   只删 pad_ratio 而保留 payload_len_norm ⇒ 信息损失为 **零**，
+    #   该消融必然得到"无差异"，会把 G1/O2（填充伪影）误判为阴性结论。
+    Ab-1:                          # 去 dlc 派生的**显式长度**通道（填充比例 + 载荷长度）
+      drop_v1_channels: [payload_len_norm, pad_ratio]
+    Ab-1b:                         # 去字节图 4 个填充掩码通道
+      drop_v2_mask_channels: true
+    Ab-2:                          # 去时序通道（验证 masquerade 的必要性）
+      drop_v1_channels: [dt_norm, dt_dev, period_stability]
+    Ab-6:                          # Focal Loss 替代加权 BCE
+      loss:
+        binary: {type: focal}
+    Ab-12:                         # 协议盲通道子集（v4 §5.3）：只保留 5 个协议无关通道
+      drop_v1_channels: [payload_len_norm, pad_ratio, proto_flag, brs_flag, esi_flag,
+                         byte_mean, byte_std, byte_entropy, nonzero_ratio, payload_delta,
+                         payload_u32]
+    # ★ 2026-10-28：Ab-12 同时删了 11 个通道，无法区分"去掉载荷内容"与"减少输入维度"。
+    #   Ab-12b 只删 6 个 DLC 代理通道（有效秩实测 ≈1.25），保留 payload_delta /
+    #   payload_u32（真正的载荷差分与前 4 字节），得到 10 维。若 Ab-12b ≈ Ab-12，
+    #   则收益来自"去掉 DLC 代理噪声"，而非"载荷无用"。
+    Ab-12b:
+      drop_v1_channels: [payload_len_norm, pad_ratio, byte_mean, byte_std,
+                         byte_entropy, nonzero_ratio]
+    # ★★ Ab-13 感受野扫描（2026-10-27 重设计，修正"混淆变量"缺陷）
+    #   旧定义让块数随 RF 一起变（2/3/4/5 块 → 参数量 40.2K/53.3K/65.7K/79.4K），
+    #   因此性能差异**无法归因于感受野**。新定义固定 4 个残差块、通道恒为 [64,64,64,64]，
+    #   只改膨胀率分配，参数量与深度完全一致：
+    #       RF = 1 + 2·Σ(k−1)·d = 1 + 4·Σd，k=3
+    #   full 的 [1,2,4,8]（Σd=15 → RF=61）作为扫描的参照点，不再重复定义。
+    Ab-13-RF17:                    # [1,1,1,1]  Σd=4  → RF=17（同深度下的最小感受野）
+      model: {variants: {fdtcn: {dilations: [1, 1, 1, 1],
+                                 block_channels: [64, 64, 64, 64]}}}
+    Ab-13-RF33:                    # [1,1,2,4]  Σd=8  → RF=33
+      model: {variants: {fdtcn: {dilations: [1, 1, 2, 4],
+                                 block_channels: [64, 64, 64, 64]}}}
+    Ab-13-RF45:                    # [1,2,4,4]  Σd=11 → RF=45
+      model: {variants: {fdtcn: {dilations: [1, 2, 4, 4],
+                                 block_channels: [64, 64, 64, 64]}}}
+    Ab-13-RF93:                    # [1,2,4,16] Σd=23 → RF=93
+      model: {variants: {fdtcn: {dilations: [1, 2, 4, 16],
+                                 block_channels: [64, 64, 64, 64]}}}
+    Ab-14:                         # 双头 → 单头（只保留二分类头）
+      # ★ 2026-10-30 溯源说明（审计 D4-3 / R-3）：本变体在 CTT 上实际跑的是
+      #   seed 42 / 1234 / 2024（当时 `seeds` 仍是旧列表），与全局 seeds [42–46] 不同。
+      #   决定**不改名**——改名即伪造溯源；改为在表格中如实标注这 3 个 seed，
+      #   并说明它是 n=3 的历史批次。重跑请显式传 `--seed 1234` 等方法复现，不要改本注释。
+      model: {variants: {fdtcn: {dual_head: false}}}
+      label_space: {multiclass: false}
+      loss: {lambda_b: 0.0}
+    # =========================================================================
+    # ★ 2026-10-28 审计新增（均为"默认关闭、显式跑才生效"，不影响既有 run）
+    # =========================================================================
+    # 稀疏正例对策之一：时序聚合加 max 分支（参数不变，head 输入 2C → 3C）
+    Ab-19-maxpool:
+      model: {variants: {fdtcn: {pooling: last_mean_max}}}
+    # 稀疏正例对策之二：逐帧辅助 BCE（帧级标签本来就在 label.npy 里）
+    #   三个主干同时打开，保证换主干时对照公平；weight 来自 loss.aux_frame.weight。
+    Ab-20-auxframe:
+      loss: {aux_frame: {enabled: true, weight: 0.3}}
+      model:
+        variants:
+          fdtcn: {aux_frame: true}
+          lstm: {aux_frame: true}
+          transformer: {aux_frame: true}
+    # 容量匹配对照（回答"是架构差还是容量差"；只与同名主干一起跑）
+    Ab-16-fdtcn-small:             # 4 块 × 32 通道 ≈ 20 K 参数（≈LSTM 的 2×）
+      model: {variants: {fdtcn: {block_channels: [32, 32, 32, 32],
+                                 dilations: [1, 2, 4, 8]}}}
+    Ab-17-lstm-large:              # hidden 64 ≈ 40 K 参数（≈FD-TCN 的 0.6×）
+      model: {variants: {lstm: {hidden: 64}}}
+    # CANDIDS 同构基线的公平性对照：CAN 2.0 语料只喂前 8 字节（数据通道 0 + 掩码 4）
+    Ab-18-rgbnet8b:
+      v2_channel_index: [0, 4]
+
+# -----------------------------------------------------------------------------
+# 10. KD-Logic（DL → 约束 CART 蒸馏；确定性对照）
+# -----------------------------------------------------------------------------
+kd:
+  enabled: false
+  feature_stats: [mean, std, last, min, max]   # 16 通道 × 5 统计量 = 80 维
+  tree:
+    criterion: gini
+    max_depth: 8
+    max_leaf_nodes: 32
+    min_samples_leaf: 50
+    class_weight: balanced
+  distill:
+    mode: soft                     # soft = 学教师判决；hard = 学真值
+    temperature: 1.0
+  direct_baseline: true            # 同时训练“直接在真值上训练”的 CART 作对照
+  rule_export:
+    max_rules: 12
+    decimals: 3
+
+# -----------------------------------------------------------------------------
+# 11. 运行时
+# -----------------------------------------------------------------------------
+runtime:
+  device: cpu                      # cpu | cuda
+  deterministic: true              # cudnn/torch 确定性 + 固定种子
+  num_threads: 4
+  log_level: INFO
+  fail_fast: true
+
+# -----------------------------------------------------------------------------
+# 12. 审计复算（2026-10-30 · 不重训，只读既有 predictions_*.npz 与部署 summary）
+# -----------------------------------------------------------------------------
+# 为什么单列一段：`代码/run_audit.py` 的四项复算（setwise / nested / openset /
+# deploy）都要求"口径可审阅、可改一行重跑"，因此配对对象、操作点、重采样参数
+# 一律落在此处，脚本内不出现业务常量（含 1e-3/1e-2 这类 FPR 目标之外的阈值）。
+audit:
+  out_subdir: audit                 # outputs/audit/
+  group:
+    # capture 名按该记号切分，取第 0 段为"录制组"（CTT：set_01…set_04）
+    # 无该记号的语料（HCRL / ROAD）组 = capture 本身，嵌套推断退化为簇级
+    separator: "__"
+  setwise:                          # F3：载荷通道 ΔMCC 按录制组拆分
+    dataset: ctt15
+    model: fdtcn
+    variants: [full, Ab-12]         # A − B；Ab-12 = 全删载荷通道（= FD-TCN-PF）
+  nested:                           # D4-1：组→capture→窗口
+    n_boot: 1000                    # 两阶段自助次数（外层组、内层 capture）
+    n_perm: 20000                   # 组层 Monte Carlo 置换次数（G>exact 时启用）
+    exact_max_groups: 16            # G ≤ 此值走精确枚举
+    seed: 0
+    pairs:                          # 只列"结论依赖显著性"的对比，避免多重比较膨胀
+      - {dataset: ctt15, model_a: fdtcn, variant_a: full, model_b: lstm, variant_b: full}
+      - {dataset: ctt15, model_a: fdtcn, variant_a: full, model_b: rgbnet, variant_b: full}
+      - {dataset: road,  model_a: fdtcn, variant_a: full, model_b: rgbnet, variant_b: full}
+  openset:                          # F4：未知攻击标准度量
+    dataset: ctt15                  # 唯一有干净零样本家族（masquerade）的语料
+    models:                         # [model, variant]
+      - [fdtcn, full]
+      - [fdtcn, Ab-12]
+      - [lstm, full]
+      - [transformer, full]
+      - [rgbnet, full]
+    unknown_index_fallback: 15      # label_map.json 缺失时的兜底（仅 CTT 成立）
+  deploy:                           # F2：钉死单一操作点
+    canonical: {precision: FP32, threads: 1, batch: 1, statistic: T4_plus}
+    rounds: [R4, R1]                # R4 为主口径，R1 仅作敏感性并列

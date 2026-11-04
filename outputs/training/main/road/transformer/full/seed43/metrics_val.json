@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.995,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4129,
+  "fp": 1038,
+  "tn": 79918,
+  "fn": 521,
+  "mcc": 0.8328630448696118,
+  "f1": 0.8411938474075583,
+  "precision": 0.7991097348558157,
+  "recall": 0.8879569892473118,
+  "fpr": 0.012821779732200207,
+  "specificity": 0.9871782202677998,
+  "balanced_accuracy": 0.9375676047575559,
+  "accuracy": 0.9817886596733874,
+  "auc_pr": 0.8892676219723787,
+  "auc_pr_norm": 0.8829073082485234,
+  "auc_roc": 0.9947799787167011,
+  "recall_at_fpr_0p1": 0.0,
+  "recall_at_fpr_1": 0.844516129032258,
+  "tau_at_fpr_1": 0.9993904829025269,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.8255236182387189,
+      "hi": 0.8406914538004866,
+      "mean": 0.8329180039399112,
+      "std": 0.0038762510368023475,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.8806894667214761,
+      "hi": 0.8977056307850937,
+      "mean": 0.8892203723352234,
+      "std": 0.00440179952967094,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.8341777632458784,
+      "hi": 0.8485731585741689,
+      "mean": 0.8412341747023165,
+      "std": 0.0036735451444294396,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.8787043010752688,
+      "hi": 0.8965645161290323,
+      "mean": 0.8881395698924731,
+      "std": 0.004760078568346922,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.012068284006126785,
+      "hi": 0.013637346212757548,
+      "mean": 0.012830809328524137,
+      "std": 0.0003915456735788463,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.8733333333333333,
+    "macro_f1": 0.7384843566064954,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.9886877828054299,
+        "recall": 0.9864559819413092,
+        "f1": 0.9875706214689266
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 0.9661016949152542,
+        "f1": 0.9827586206896551
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.944557477110885,
+        "recall": 0.841795104261106,
+        "f1": 0.8902205177372964
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.4444444444444444,
+        "recall": 0.3333333333333333,
+        "f1": 0.380952380952381
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.965547703180212,
+        "recall": 0.9333902647309992,
+        "f1": 0.9491966999565783
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.9134615384615384,
+        "recall": 0.8715596330275229,
+        "f1": 0.892018779342723
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.9035812672176309,
+        "recall": 0.7592592592592593,
+        "f1": 0.8251572327044026
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.995
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 1.0000000000000002,
+  "fpr_at_fpr_0p1": 0.0,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 1.0000000000000002,
+    "fpr_1": 0.9993904829025269,
+    "source": "calibrated_on_val"
+  }
+}

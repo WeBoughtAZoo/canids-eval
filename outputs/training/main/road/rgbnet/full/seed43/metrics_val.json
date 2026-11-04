@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.979,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4468,
+  "fp": 272,
+  "tn": 80684,
+  "fn": 182,
+  "mcc": 0.9488942043282654,
+  "f1": 0.951650692225772,
+  "precision": 0.9426160337552743,
+  "recall": 0.9608602150537634,
+  "fpr": 0.0033598497949503432,
+  "specificity": 0.9966401502050497,
+  "balanced_accuracy": 0.9787501826294065,
+  "accuracy": 0.9946966334135457,
+  "auc_pr": 0.9861351124893655,
+  "auc_pr_norm": 0.985338732641986,
+  "auc_roc": 0.9991893259952174,
+  "recall_at_fpr_0p1": 0.8655913978494624,
+  "recall_at_fpr_1": 0.9864516129032258,
+  "tau_at_fpr_1": 0.23792728781700134,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.943976118247039,
+      "hi": 0.9532703759340122,
+      "mean": 0.9488175574655897,
+      "std": 0.002332065297841216,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9837444143591847,
+      "hi": 0.9884953725924971,
+      "mean": 0.986167406754548,
+      "std": 0.0012469417931278528,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9469981585371425,
+      "hi": 0.9557735716265525,
+      "mean": 0.9515751492401978,
+      "std": 0.0022067311510640354,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.9554784946236559,
+      "hi": 0.9664516129032258,
+      "mean": 0.9608929032258066,
+      "std": 0.002775956075245488,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.002964573348485597,
+      "hi": 0.0037427738524630663,
+      "mean": 0.0033712386975641093,
+      "std": 0.00020250334606103628,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.8518279569892473,
+    "macro_f1": 0.6535551966375375,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.5443959243085881,
+        "recall": 0.8442437923250564,
+        "f1": 0.6619469026548673
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 0.9661016949152542,
+        "f1": 0.9827586206896551
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.9503239740820735,
+        "recall": 0.7978241160471442,
+        "f1": 0.8674223755544603
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.9252032520325203,
+        "recall": 0.9718189581554227,
+        "f1": 0.9479383590170762
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.9566666666666667,
+        "recall": 0.8776758409785933,
+        "f1": 0.9154704944178629
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.9151193633952255,
+        "recall": 0.7986111111111112,
+        "f1": 0.8529048207663782
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.979
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "full"
+  },
+  "tau_at_fpr_0p1": 0.9998993873596191,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.9998993873596191,
+    "fpr_1": 0.23792728781700134,
+    "source": "calibrated_on_val"
+  }
+}

@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this code or the sufficient-statistics artefact, please cite the accompanying paper."
+title: "CAN IDS evaluation toolkit and sufficient-statistics artefact (FD-TCN series)"
+abstract: >-
+  Code, configuration, frozen tables and sufficient statistics for a measurement study on
+  windowed CAN / CAN FD intrusion detection: prevalence-aware dual-regime reporting,
+  attack-density stratification, capture-level sign-flip inference, and a CPU-only
+  single-board-computer deployment measurement. No corpus-derived tensors are distributed.
+authors:
+  - family-names: "Xiang"
+    given-names: "Yanjie"
+    affiliation: "School of Computer Science and Artificial Intelligence, Civil Aviation Flight University of China, Guanghan 618307, China"
+    email: "xyj@cafuc.edu.cn"
+  - family-names: "Su"
+    given-names: "Yaping"
+    affiliation: "School of Computer Science and Artificial Intelligence, Civil Aviation Flight University of China, Guanghan 618307, China"
+    email: "yapingsu@cafuc.edu.cn"
+  - family-names: "He"
+    given-names: "Zhige"
+    affiliation: "School of Computer Science and Artificial Intelligence, Civil Aviation Flight University of China, Guanghan 618307, China"
+    email: "hezhige@cafuc.edu.cn"
+  - family-names: "Zhang"
+    given-names: "Yi"
+    affiliation: "School of Intelligent Technology, Geely University of China, Chengdu 610000, China"
+    email: "zhangyi@guc.edu.cn"
+version: "1.0.0"
+date-released: "2026-11-03"
+license: MIT
+repository-code: "https://github.com/WeBoughtAZoo/canids-eval"
+keywords:
+  - CAN bus
+  - CAN FD
+  - intrusion detection
+  - evaluation protocol
+  - reproducibility
+  - sufficient statistics

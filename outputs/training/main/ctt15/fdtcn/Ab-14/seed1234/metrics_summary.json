@@ -1,0 +1,304 @@
+{
+  "dataset": "ctt15",
+  "model": "fdtcn",
+  "variant": "Ab-14",
+  "seed": 1234,
+  "run_dir": "D:\\Files\\Personal\\AI works\\WorkBuddy\\CAN IDS\\outputs\\training\\main\\ctt15\\fdtcn\\Ab-14\\seed1234",
+  "config_fingerprint": "51fafb04dc14402e",
+  "preprocess_fingerprint": "47a23a91ba9a27d9",
+  "training": {
+    "epochs_run": 17,
+    "best_epoch": 7,
+    "best_score": 0.7983006674403991,
+    "best_threshold": 0.094,
+    "best_metrics": {
+      "train_loss": 0.09894925301755428,
+      "train_loss_bin": 0.09894925301755428,
+      "train_loss_type": 0.0,
+      "train_seconds": 541.3351371999597,
+      "lr": 0.0009671223111161148,
+      "epoch": 7,
+      "val_loss": 0.6595443425509345,
+      "val_auc_pr": 0.8156524233329128,
+      "val_auc_roc": 0.9724171908472561,
+      "val_prevalence": 0.01798462383305876,
+      "val_mcc@0.5": 0.7778219818760269,
+      "val_f1@0.5": 0.7604595092894625,
+      "val_mcc_calibrated": 0.7983006674403991,
+      "val_f1_calibrated": 0.790703922622246,
+      "val_fpr_calibrated": 0.0007540807205283649,
+      "val_recall_calibrated": 0.6807772380291465,
+      "val_threshold": 0.094,
+      "val_calibration_metric": "mcc"
+    },
+    "train_seconds": 9737.053786600009,
+    "monitor": "mcc_calibrated",
+    "n_train_batches": 11948,
+    "n_val_batches": 470
+  },
+  "threshold": 0.094,
+  "dataset_stats": {
+    "train": {
+      "n_windows": 1529336,
+      "n_positive": 78042,
+      "n_negative": 1451294,
+      "prevalence": 0.05102998948563298,
+      "n_by_type": {
+        "0": 78042
+      },
+      "n_captures": 63
+    },
+    "val": {
+      "n_windows": 240372,
+      "n_positive": 4323,
+      "n_negative": 236049,
+      "prevalence": 0.01798462383305876,
+      "n_by_type": {
+        "0": 4323
+      },
+      "n_captures": 23
+    },
+    "test": {
+      "n_windows": 2930997,
+      "n_positive": 236953,
+      "n_negative": 2694044,
+      "prevalence": 0.08084382208511302,
+      "n_by_type": {
+        "0": 236953
+      },
+      "n_captures": 224
+    }
+  },
+  "model_stats": {
+    "n_params": 57073,
+    "n_params_trainable": 57073,
+    "inputs": [
+      "v1"
+    ],
+    "channels": 16,
+    "v2_channels": 8,
+    "receptive_field": 61,
+    "macs": 2926656,
+    "checkpoint_mb": 0.6995,
+    "int8_estimate_mb": 0.0571
+  },
+  "val": {
+    "split": "val",
+    "n_windows_indexed": 240372,
+    "threshold": 0.094,
+    "n": 240372,
+    "n_pos": 4323,
+    "n_neg": 236049,
+    "prevalence": 0.01798462383305876,
+    "tp": 2943,
+    "fp": 178,
+    "tn": 235871,
+    "fn": 1380,
+    "mcc": 0.7983006674403991,
+    "recall_at_fpr_0p1": 0.6897987508674531,
+    "recall_at_fpr_1": 0.7952810548230396,
+    "tau_at_fpr_0p1": 0.07057976722717285,
+    "tau_at_fpr_1": 0.00781076168641448,
+    "fpr_at_fpr_0p1": 0.0009997924159814277,
+    "fpr_at_fpr_1": 0.009997924159814276,
+    "auc_pr": 0.8156524233329128,
+    "auc_pr_norm": 0.8122762828962584,
+    "auc_roc": 0.9724171908472561,
+    "f1": 0.790703922622246,
+    "precision": 0.9429669977571291,
+    "recall": 0.6807772380291465,
+    "fpr": 0.0007540807205283649,
+    "specificity": 0.9992459192794716,
+    "balanced_accuracy": 0.840011578654309,
+    "accuracy": 0.9935183798445743,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.7898421084345707,
+        "hi": 0.8100771616307263,
+        "mean": 0.7999138695617682,
+        "std": 0.005118045352104077,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.8050453236209588,
+        "hi": 0.8271446693064007,
+        "mean": 0.8162794322735824,
+        "std": 0.005814016146542154,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.7810322087819601,
+        "hi": 0.8029087500744913,
+        "mean": 0.7919859444013926,
+        "std": 0.005544774737987102,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.6661106477620239,
+        "hi": 0.6961356686127328,
+        "mean": 0.680737003058104,
+        "std": 0.007574510241035991,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.0005906223428359037,
+        "hi": 0.0008197430792808664,
+        "mean": 0.0007011043619496646,
+        "std": 5.894941964570919e-05,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 200000,
+    "multiclass": {},
+    "zero_shot_types": [
+      "DoS",
+      "Fuzzing",
+      "RpmSpoofing",
+      "double",
+      "force-neutral",
+      "interval",
+      "speed",
+      "speed-accessory",
+      "standstill",
+      "systematic",
+      "targeted_payload_fuzzing",
+      "triple",
+      "untargeted_payload_fuzzing",
+      "valid_systematic"
+    ],
+    "op_source": "calibrated_on_val",
+    "operating_points": {
+      "fpr_0p1": 0.07057976722717285,
+      "fpr_1": 0.00781076168641448,
+      "source": "calibrated_on_val"
+    },
+    "calibration": {
+      "source": "trainer_best_threshold",
+      "threshold": 0.094
+    },
+    "data": {
+      "dataset": "ctt15",
+      "split": "val",
+      "n_captures": 23,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "test": {
+    "split": "test",
+    "n_windows_indexed": 2930997,
+    "threshold": 0.094,
+    "n": 2930997,
+    "n_pos": 236953,
+    "n_neg": 2694044,
+    "prevalence": 0.08084382208511302,
+    "tp": 128361,
+    "fp": 9083,
+    "tn": 2684961,
+    "fn": 108592,
+    "mcc": 0.6941472078109545,
+    "recall_at_fpr_0p1": 0.5486657691609729,
+    "recall_at_fpr_1": 0.609200980785219,
+    "tau_at_fpr_0p1": 0.07057976722717285,
+    "tau_at_fpr_1": 0.00781076168641448,
+    "fpr_at_fpr_0p1": 0.003797636564213502,
+    "fpr_at_fpr_1": 0.015781108252129514,
+    "auc_pr": 0.6787587180324747,
+    "auc_pr_norm": 0.6505041366351215,
+    "auc_roc": 0.7865300657765604,
+    "f1": 0.6856945969118342,
+    "precision": 0.9339149035243445,
+    "recall": 0.54171502365448,
+    "fpr": 0.0033715113784333144,
+    "specificity": 0.9966284886215667,
+    "balanced_accuracy": 0.7691717561380234,
+    "accuracy": 0.9598515453956452,
+    "bootstrap": {
+      "mcc": {
+        "lo": 0.6854554090330022,
+        "hi": 0.6972945107066779,
+        "mean": 0.6916391553409911,
+        "std": 0.0029907528989101197,
+        "n_resamples": 1000
+      },
+      "auc_pr": {
+        "lo": 0.668982449791797,
+        "hi": 0.6827929260612107,
+        "mean": 0.6762006415995439,
+        "std": 0.0034499612973780116,
+        "n_resamples": 1000
+      },
+      "f1": {
+        "lo": 0.6760570280565121,
+        "hi": 0.6894090078768212,
+        "mean": 0.6829400655719071,
+        "std": 0.003289354893344164,
+        "n_resamples": 1000
+      },
+      "recall": {
+        "lo": 0.5308306017688169,
+        "hi": 0.546292287711052,
+        "mean": 0.5386323211082936,
+        "std": 0.003843977733272429,
+        "n_resamples": 1000
+      },
+      "fpr": {
+        "lo": 0.0031496319989555623,
+        "hi": 0.0037044894495487702,
+        "mean": 0.0034077495090599516,
+        "std": 0.00013787751791596053,
+        "n_resamples": 1000
+      }
+    },
+    "bootstrap_n_used": 200000,
+    "multiclass": {},
+    "zero_shot_types": [
+      "DoS",
+      "Fuzzing",
+      "RpmSpoofing",
+      "double",
+      "force-neutral",
+      "interval",
+      "masquerade",
+      "speed",
+      "speed-accessory",
+      "standstill",
+      "systematic",
+      "triple"
+    ],
+    "op_source": "inherited_from_val",
+    "operating_points": {
+      "fpr_0p1": 0.07057976722717285,
+      "fpr_1": 0.00781076168641448,
+      "source": "inherited_from_val"
+    },
+    "calibration": {
+      "source": "inherited_from_val",
+      "threshold": 0.094
+    },
+    "data": {
+      "dataset": "ctt15",
+      "split": "test",
+      "n_captures": 224,
+      "window_T": 64,
+      "stride": 64,
+      "variant": "Ab-14"
+    }
+  },
+  "zero_shot_types": [
+    "DoS",
+    "Fuzzing",
+    "RpmSpoofing",
+    "double",
+    "force-neutral",
+    "interval",
+    "masquerade",
+    "speed",
+    "speed-accessory",
+    "standstill",
+    "suppress",
+    "systematic",
+    "triple"
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "split": "val",
+  "n_windows_indexed": 85606,
+  "threshold": 0.998,
+  "n": 85606,
+  "n_pos": 4650,
+  "n_neg": 80956,
+  "prevalence": 0.05431862252645842,
+  "tp": 4453,
+  "fp": 169,
+  "tn": 80787,
+  "fn": 197,
+  "mcc": 0.9582711253918537,
+  "f1": 0.9605263157894738,
+  "precision": 0.9634357421029858,
+  "recall": 0.9576344086021505,
+  "fpr": 0.0020875537328919414,
+  "specificity": 0.9979124462671081,
+  "balanced_accuracy": 0.9777734274346292,
+  "accuracy": 0.9957245987430787,
+  "auc_pr": 0.991081923532928,
+  "auc_pr_norm": 0.990569681629031,
+  "auc_roc": 0.9995088304970654,
+  "recall_at_fpr_0p1": 0.9290322580645162,
+  "recall_at_fpr_1": 0.9879569892473118,
+  "tau_at_fpr_1": 0.02387341856956482,
+  "bootstrap": {
+    "mcc": {
+      "lo": 0.953599787784287,
+      "hi": 0.9625451553955104,
+      "mean": 0.9581950589389703,
+      "std": 0.0022427864652185946,
+      "n_resamples": 1000
+    },
+    "auc_pr": {
+      "lo": 0.9889948705848163,
+      "hi": 0.9928964598110824,
+      "mean": 0.9910355330362591,
+      "std": 0.0009986674096514956,
+      "n_resamples": 1000
+    },
+    "f1": {
+      "lo": 0.9561079208454654,
+      "hi": 0.9645750177096093,
+      "mean": 0.96045277873241,
+      "std": 0.0021220022558656273,
+      "n_resamples": 1000
+    },
+    "recall": {
+      "lo": 0.952258064516129,
+      "hi": 0.9634408602150538,
+      "mean": 0.9576756989247313,
+      "std": 0.0029923921938586583,
+      "n_resamples": 1000
+    },
+    "fpr": {
+      "lo": 0.001778435199367558,
+      "hi": 0.002458125401452641,
+      "mean": 0.0020988561687830423,
+      "std": 0.00016754126804506607,
+      "n_resamples": 1000
+    }
+  },
+  "bootstrap_n_used": 85606,
+  "multiclass": {
+    "n": 4650,
+    "accuracy": 0.963010752688172,
+    "macro_f1": 0.7948028133673584,
+    "per_class": [
+      {
+        "class_index": 0,
+        "class_name": "normal",
+        "n": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_index": 1,
+        "class_name": "correlated_signal",
+        "n": 443,
+        "precision": 0.9910514541387024,
+        "recall": 1.0,
+        "f1": 0.9955056179775281
+      },
+      {
+        "class_index": 2,
+        "class_name": "fuzzing",
+        "n": 59,
+        "precision": 1.0,
+        "recall": 0.9661016949152542,
+        "f1": 0.9827586206896551
+      },
+      {
+        "class_index": 3,
+        "class_name": "masquerade",
+        "n": 2206,
+        "precision": 0.9938938468764679,
+        "recall": 0.9592021758839528,
+        "f1": 0.9762399077277971
+      },
+      {
+        "class_index": 4,
+        "class_name": "max_engine_coolant_temp",
+        "n": 12,
+        "precision": 0.8,
+        "recall": 0.3333333333333333,
+        "f1": 0.47058823529411764
+      },
+      {
+        "class_index": 5,
+        "class_name": "max_speedometer",
+        "n": 1171,
+        "precision": 0.9920704845814978,
+        "recall": 0.9615713065755764,
+        "f1": 0.9765828274067649
+      },
+      {
+        "class_index": 6,
+        "class_name": "reverse_light_off",
+        "n": 327,
+        "precision": 0.9937304075235109,
+        "recall": 0.9694189602446484,
+        "f1": 0.9814241486068112
+      },
+      {
+        "class_index": 7,
+        "class_name": "reverse_light_on",
+        "n": 432,
+        "precision": 0.9904534606205251,
+        "recall": 0.9606481481481481,
+        "f1": 0.9753231492361927
+      }
+    ]
+  },
+  "zero_shot_types": [],
+  "calibration": {
+    "source": "trainer_best_threshold",
+    "threshold": 0.998
+  },
+  "data": {
+    "dataset": "road",
+    "split": "val",
+    "n_captures": 41,
+    "window_T": 64,
+    "stride": 64,
+    "variant": "Ab-1"
+  },
+  "tau_at_fpr_0p1": 0.9999682903289795,
+  "fpr_at_fpr_0p1": 0.0009881911161618657,
+  "fpr_at_fpr_1": 0.009993082662186866,
+  "op_source": "calibrated_on_val",
+  "operating_points": {
+    "fpr_0p1": 0.9999682903289795,
+    "fpr_1": 0.02387341856956482,
+    "source": "calibrated_on_val"
+  }
+}
