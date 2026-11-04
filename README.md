@@ -133,26 +133,9 @@ python 代码/run_figures.py
 
 ---
 
-## 6. 数据与许可
 
-三个语料由提供方发布，本仓库不再分发：
 
-| 语料 | 许可 | 处理 |
-|---|---|---|
-| ROAD | CC-BY | 标注出处，不分发原始数据 |
-| HCRL CAN-FD | 使用许可已由作者确认，未标注具体条款 | 只发脚本，声明写 "follows the provider's terms" |
-| can-train-and-test v1.5 | 使用许可已由作者确认，仓库无 LICENSE | 同上，维持统一不分发 |
-
-**统一政策**：不分发任何原始或派生信号数据。充分统计量只含聚合计数（每 run × 每 capture 的
-TP / FP / FN / TN），不含帧级或窗口级信号。
-
-充分统计量可精确重算论文报告的**阈值型**指标（MCC、F1、precision、recall、specificity、
-实际误报率）与显著性检验。AUC-PR 与 AUC-ROC 依赖完整分数分布，**不能**由计数还原，
-其取值见各 run 的 `metrics_test.json`。
-
----
-
-## 7. 关键约定
+## 6. 关键约定
 
 1. **窗口在每段连续帧内构造**，不跨 capture 拼接；`W = 64`，stride 训练 32 / 校验测试 64。
 2. **标签用 any_frame 规则**：窗口内任一帧为攻击即为正例。
@@ -162,7 +145,7 @@ TP / FP / FN / TN），不含帧级或窗口级信号。
 
 ---
 
-## 8. 测试
+## 7. 测试
 
 ```bash
 python 代码/tests/test_stat_core.py     # 统计核心（10 项）
@@ -171,7 +154,7 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
 
 ---
 
-## 9. 引用与许可
+## 8. 引用与许可
 
 - 代码：MIT（见 `LICENSE`；仅覆盖代码与文档，不覆盖第三方语料）。
 - 引用信息：`CITATION.cff`。
