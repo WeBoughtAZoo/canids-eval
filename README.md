@@ -154,11 +154,12 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
 
 ---
 
-## 8. 引用与许可
+## 8. 引用
 
 - 代码：MIT（见 `LICENSE`；仅覆盖代码与文档，不覆盖第三方语料）。
 - 引用信息：`CITATION.cff`。
-- 归档：以 tag `v1.0.0-paper` 为不可变引用。
+- 归档：以 tag `v1.0.1-paper` 为不可变引用。
+- 三个语料由提供方主动公开发布，可用于研究；使用它们时请引用各语料的原始论文（见论文参考文献）。
 
 ```bibtex
 @software{xiang2026canids,
