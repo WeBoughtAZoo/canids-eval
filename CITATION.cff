@@ -23,8 +23,8 @@ authors:
     given-names: "Yi"
     affiliation: "School of Intelligent Technology, Geely University of China, Chengdu 610000, China"
     email: "zhangyi@guc.edu.cn"
-version: "1.0.2"
-date-released: "2026-11-06"
+version: "1.0.3"
+date-released: "2026-11-07"
 license: MIT
 repository-code: "https://github.com/WeBoughtAZoo/canids-eval"
 keywords:

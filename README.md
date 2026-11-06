@@ -158,7 +158,8 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
 
 - 代码：MIT（见 `LICENSE`；仅覆盖代码与文档，不覆盖第三方语料）。
 - 引用信息：`CITATION.cff`。
-- 归档：以 tag `v1.0.2-paper` 为不可变引用。
+- 归档：每次发布打不可变 tag（`v1.0.x-paper`）。本文引用的具体 tag 以 `CITATION.cff` 的 `version` 与
+  `RELEASE-NOTES.md` 标题为准，避免 README 与 tag 互相指向造成错位。
 - 三个语料由提供方主动公开发布，可用于研究；使用它们时请引用各语料的原始论文（见论文参考文献）。
 
 ```bibtex
@@ -167,6 +168,6 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
   author = {Xiang, Yanjie and Su, Yaping and He, Zhige and Zhang, Yi},
   year   = {2026},
   url    = {https://github.com/WeBoughtAZoo/canids-eval},
-  note   = {Tag v1.0.2-paper}
+  note   = {Tag v1.0.3-paper}
 }
 ```

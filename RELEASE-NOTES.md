@@ -1,4 +1,4 @@
-# 发布说明（RELEASE NOTES）· v1.0.2-paper
+# 发布说明（RELEASE NOTES）· v1.0.3-paper
 
 > 本文件说明这个仓库**装了什么、为什么这么装、以及什么被有意排除**。
 > 逐文件清单见 `MANIFEST.csv`（列：`source` / `category` / `bytes` / `sha256` / `note`，文本文件按 LF 字节计算哈希）。
@@ -104,8 +104,8 @@ python 代码/run_train.py --dataset ctt15 --model fdtcn --seeds 42 43 44 45 46
 cd 代码/github
 git init
 git add -A
-git commit -m "Release v1.0.2-paper: code, frozen tables and sufficient statistics"
-git tag -a v1.0.2-paper -m "Matches Sensors submission v2 (2026-11-07)"
+git commit -m "Release v1.0.3-paper: code, frozen tables and sufficient statistics"
+git tag -a v1.0.3-paper -m "Matches Sensors submission v3 (2026-11-07)"
 git remote add origin https://github.com/WeBoughtAZoo/canids-eval.git
 git push -u origin main --tags
 ```
