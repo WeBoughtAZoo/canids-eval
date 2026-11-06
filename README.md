@@ -95,7 +95,7 @@ outputs/
   training/road_cap_v2/  ROAD capture 级留出（§4.4 与补充表 S7）
   pi5_deploy/summary_v4.csv  树莓派 5 部署测量（表 7）
 
-论文/v2_2026-11-02/figures/  论文图 1–5（600 dpi PNG）
+论文/v2_2026-11-02/figures/  论文图 1–6（600 dpi PNG）
 MANIFEST.csv                 逐文件清单
 ```
 
@@ -158,7 +158,7 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
 
 - 代码：MIT（见 `LICENSE`；仅覆盖代码与文档，不覆盖第三方语料）。
 - 引用信息：`CITATION.cff`。
-- 归档：以 tag `v1.0.1-paper` 为不可变引用。
+- 归档：以 tag `v1.0.2-paper` 为不可变引用。
 - 三个语料由提供方主动公开发布，可用于研究；使用它们时请引用各语料的原始论文（见论文参考文献）。
 
 ```bibtex
@@ -167,6 +167,6 @@ python 代码/tests/smoke_test.py         # 预处理（44 项，需自备语料
   author = {Xiang, Yanjie and Su, Yaping and He, Zhige and Zhang, Yi},
   year   = {2026},
   url    = {https://github.com/WeBoughtAZoo/canids-eval},
-  note   = {Tag v1.0.0-paper}
+  note   = {Tag v1.0.2-paper}
 }
 ```

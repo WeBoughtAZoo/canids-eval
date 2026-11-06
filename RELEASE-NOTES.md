@@ -1,7 +1,7 @@
-# 发布说明（RELEASE NOTES）· v1.0.0-paper
+# 发布说明（RELEASE NOTES）· v1.0.2-paper
 
 > 本文件说明这个仓库**装了什么、为什么这么装、以及什么被有意排除**。
-> 逐文件清单见 `MANIFEST.csv`（列：`source` / `category` / `bytes` / `note`）。
+> 逐文件清单见 `MANIFEST.csv`（列：`source` / `category` / `bytes` / `sha256` / `note`，文本文件按 LF 字节计算哈希）。
 
 ---
 
@@ -10,7 +10,7 @@
 早期方案（`论文提交材料/投稿包与许可规则.md` §4）曾计划拆成 `canids-eval`（代码）+
 `canids-paper-artifact`（配置/表格/图）两个仓库。**现改为单仓**，理由有三：
 
-1. 全量仅 **11 MiB**（788 个文件），拆仓带来的跨仓版本对齐成本远大于收益；
+1. 全量仅约 **11 MiB**（`MANIFEST.csv` 616 条），拆仓带来的跨仓版本对齐成本远大于收益；
 2. 论文 Data Availability 用的是单数 "the project repository"，双仓会与正文不符；
 3. 读者一次 `clone` 即可同时拿到代码、冻结表格与充分统计量，减少"版本对不上"的可能。
 
@@ -27,8 +27,8 @@
 | `outputs/audit/` | 嵌套推断、SET 拆分、开集度量、设备等价性、鲁棒性、操作点、切分敏感性等汇总表（22 个 CSV + 说明 + 3 张图） | 补充表 S2/S5/S6 与正文审计结论的来源 |
 | `outputs/training/main/tables/` | `table_main.csv`、`table_density.csv`、`table_stats.csv`、`table_operating.csv`、`table_known.csv`、`table_ablation.csv` 等 14 个 | **冻结表格**：论文表 2–7 由这些 CSV 直出，不经手工转录 |
 | `outputs/training/gpu1/tables/` | 同口径 11 个 | GPU 批次对照（补充表 S4） |
-| `outputs/training/*/runs_index.csv` + 逐 run `metrics_*.json` | 6 份索引 + 627 个聚合指标文件 | 让 `verify_artifacts.py` **开箱可跑**；只含计数与指标，无路径、无逐窗预测、无信号 |
-| `论文/v2_2026-11-02/figures/` | `fig01_encoding.png` … `fig05_deployment.png` | 600 dpi 图件，与正文图 1–5 一一对应 |
+| `outputs/training/*/runs_index.csv` + 逐 run `metrics_*.json` | 3 份索引 + 447 个聚合指标文件 | 让 `verify_artifacts.py` **开箱可跑**；只含计数与指标，路径一律为仓库相对路径，无逐窗预测、无信号 |
+| `论文/v2_2026-11-02/figures/` | `fig01_encoding.png` … `fig06_deployment.png` | 600 dpi 图件，与正文图 1–6 一一对应 |
 | 仓库元文件 | `README.md`、`LICENSE`（MIT）、`CITATION.cff`、`requirements.txt`、`.gitignore`、`MANIFEST.csv` | — |
 
 ---
@@ -37,12 +37,12 @@
 
 | 排除项 | 体量 | 原因 |
 |---|---|---|
-| `训练数据集/`、`训练数据集_LOSO/`、`训练数据集_LOCO/`、`训练数据集_ROAD_cap/`、`数据集/` | ≈ 96 GB | 语料原始数据与派生张量；三个语料的许可**均不允许再分发**（详见 §4） |
+| `训练数据集/`、`训练数据集_LOSO/`、`训练数据集_LOCO/`、`训练数据集_ROAD_cap/`、`数据集/` | ≈ 96 GB | 语料原始数据与派生张量；三个语料均由提供方公开发布、可用于研究，本仓库只是不分发任何派生内容（作者政策，详见 §4） |
 | `*.npy` / `*.npz` / `*.pt` / `*.pth` / `*.ckpt` | 600 个 ckpt、409 个 predictions | 派生张量与逐窗预测；checkpoint 按合理请求单独提供 |
 | `outputs/training/*/*/*/*/`（run 级目录） | — | 与上一条重合；其指标已由 `outputs/artifact/` 完整覆盖 |
 | `代码/remote/`（整目录 27 个文件） | 131 KB | 租赁 GPU 编排九脚本 + SOP。属基础设施，与本论文 98 个 CPU run 无关，且含主机、端口、用户名与私钥路径 |
 | `代码/analyze_c4.py`、`analyze_operating_point.py`、`analyze_variants.py` | 3 个文件 | 一次性分析，产出不在论文中 |
-| `代码/make_fig18.py`、`make_fig19.py`、`make_fig20.py` | 3 个文件 | 早期编号出图，论文只用到 fig01–fig05 |
+| `代码/make_fig18.py`、`make_fig19.py`、`make_fig20.py` | 3 个文件 | 早期编号出图，论文只用到 fig01–fig06 |
 | `代码/scripts/legacy/build_v6.py` | 93 KB | 一次性文档生成器，含内网 IP 与个人绝对路径 |
 | 方案 HTML、审查报告、改动台账、投稿材料 | — | 版本演化史；外流会造成 HARKing 质疑 |
 
@@ -104,8 +104,8 @@ python 代码/run_train.py --dataset ctt15 --model fdtcn --seeds 42 43 44 45 46
 cd 代码/github
 git init
 git add -A
-git commit -m "Release v1.0.0-paper: code, frozen tables and sufficient statistics"
-git tag -a v1.0.0-paper -m "Matches Sensors submission v2 (2026-11-03)"
+git commit -m "Release v1.0.2-paper: code, frozen tables and sufficient statistics"
+git tag -a v1.0.2-paper -m "Matches Sensors submission v2 (2026-11-07)"
 git remote add origin https://github.com/WeBoughtAZoo/canids-eval.git
 git push -u origin main --tags
 ```
